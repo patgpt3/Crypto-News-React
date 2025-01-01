@@ -1,7 +1,7 @@
 // import "./App.css";
 import { usePrivy, useWallets, useLogin } from "@privy-io/react-auth";
 import "../../public/news.css"; // Adjust the path to your CSS file
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { usePopup } from "../assets/providers/popupContext";
 import Popup from "./usernamePopup";
 // import Popup from "./usernamePopup";
