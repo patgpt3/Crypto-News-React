@@ -6,7 +6,6 @@ command = "npm run build"
 from = "/*"
 to = "/index.html"
 status = 200
-force = true
 # Exclude static asset paths from the redirect
 conditions = { "Language" = "en" }
 
@@ -14,6 +13,23 @@ conditions = { "Language" = "en" }
 from = "/assets/*"
 to = "/assets/:splat"
 status = 200
+
+
+# Explicitly allow .mjs and .js files to be served
+[[redirects]]
+  from = "/**.mjs"
+  to = "/**.mjs"
+  status = 200
+
+[[redirects]]
+  from = "/**.js"
+  to = "/**.js"
+  status = 200
+
+[[redirects]]
+  from = "/**.css"
+  to = "/**.css"
+  status = 200
 
 
 
