@@ -1,4 +1,0 @@
-[build]
-publish = "dist" # Replace with your actual build folder, typically "dist" for Vite
-command = "npm run build"
-
