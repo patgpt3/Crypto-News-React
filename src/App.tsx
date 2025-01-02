@@ -44,7 +44,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<TopTopNetwork />} />
+      <Route path="/" element={<MainCrypto />} />
       {/* crypto */}
       <Route path="/crypto" element={<MainCrypto />} />
       <Route path="/crypto/new" element={<CryptoNew />} />
