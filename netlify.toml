@@ -7,3 +7,10 @@ command = "npm run build"
 from = "/*"
 to = "/index.html"
 status = 200
+
+
+# Ensure that assets like JS, CSS, images are not redirected to index.html
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
