@@ -2,24 +2,3 @@
 publish = "dist" # Replace with your actual build folder, typically "dist" for Vite
 command = "npm run build"
 
-
-[[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
-force = true
-
-
-# Ensure that assets like JS, CSS, images are not redirected to index.html
-[[redirects]]
-  from = "/assets/*"
-  to = "/assets/:splat"
-  status = 200
-
-
-# Ensure that assets like JS, CSS, images are not redirected to index.html
-[[redirects]]
-  from = "/public/*"
-  to = "/public/:splat"
-  status = 200
-  force = true
