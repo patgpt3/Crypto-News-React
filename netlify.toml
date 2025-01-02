@@ -3,23 +3,24 @@ publish = "dist" # Replace with your actual build folder, typically "dist" for V
 command = "npm run build"
 
 [[redirects]]
-from = "/index.mjs"
-to = "/index.mjs"
-status = 200
-
-[[redirects]]
-from = "/index.js"
-to = "/index.js"
-status = 200
-
-
-[[redirects]]
 from = "/*"
 to = "/index.html"
 status = 200
+force = true
+conditions = { Accept = "text/html" }
 
+# Explicitly allow .mjs and .js files to be served
+[[redirects]]
+  from = "/**.mjs"
+  to = "/**.mjs"
+  status = 200
 
 [[redirects]]
-from = "/indexComments.js"
-to = "/indexComments.js"
-status = 200
+  from = "/**.js"
+  to = "/**.js"
+  status = 200
+
+[[redirects]]
+  from = "/**.css"
+  to = "/**.css"
+  status = 200
