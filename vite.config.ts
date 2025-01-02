@@ -6,9 +6,6 @@ import Pages from "vite-plugin-pages";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [reactRefresh(), Pages()],
-  base: '/crypto',
-  build: {
-    outDir: 'dist', // Output directory for your built files
-  },
+  base: '/',
 });
 // vite.config.js
