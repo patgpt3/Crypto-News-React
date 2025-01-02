@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/crypto",
-      "destination": "/index.html"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
