@@ -3,4 +3,11 @@ publish = "dist" # Replace with your actual build folder, typically "dist" for V
 command = "npm run build"
 
 [[redirects]]
+  from = "/index.mjs"
+  to = "/index.mjs"
+  status = 200
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
 status = 200
