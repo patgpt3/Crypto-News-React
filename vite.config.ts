@@ -7,5 +7,8 @@ import Pages from "vite-plugin-pages";
 export default defineConfig({
   plugins: [reactRefresh(), Pages()],
   base: '/',
+  build: {
+    outDir: 'dist', // Output directory for your built files
+  },
 });
 // vite.config.js
