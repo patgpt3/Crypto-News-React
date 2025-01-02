@@ -200,16 +200,18 @@ const CryptoItems: React.FC = () => {
         </tbody>
       </table>
       <button
-        id="next-page"
-        onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
-      >
-        Next
-      </button>
-      <button
         id="back-page"
+        style={{ visibility: currentPage === 0 ? "hidden" : "visible" }}
         onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
       >
         Back
+      </button>
+      <button
+        id="next-page"
+        style={{ visibility: users.length < 30 ? "hidden" : "visible" }}
+        onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
+      >
+        Next
       </button>
     </div>
   );

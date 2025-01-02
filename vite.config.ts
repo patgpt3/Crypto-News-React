@@ -6,6 +6,6 @@ import Pages from "vite-plugin-pages";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [reactRefresh(), Pages()],
-  base: '/',
+  base: './',
 });
 // vite.config.js
