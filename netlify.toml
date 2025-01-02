@@ -14,3 +14,10 @@ status = 200
   from = "/assets/*"
   to = "/assets/:splat"
   status = 200
+
+
+# Ensure that assets like JS, CSS, images are not redirected to index.html
+[[redirects]]
+  from = "/public/*"
+  to = "/public/:splat"
+  status = 200
