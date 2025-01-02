@@ -7,19 +7,16 @@ from = "/*"
 to = "/index.html"
 status = 200
 force = true
-
-# Explicitly allow .mjs and .js files to be served
-[[redirects]]
-  from = "/**.mjs"
-  to = "/**.mjs"
-  status = 200
+  # Exclude static asset paths from the redirect
+  conditions = { 
+    "Language" = "en"
+  }
 
 [[redirects]]
-  from = "/**.js"
-  to = "/**.js"
+  from = "/assets/*"
+  to = "/assets/:splat"
   status = 200
 
-[[redirects]]
-  from = "/**.css"
-  to = "/**.css"
-  status = 200
+
+
+
