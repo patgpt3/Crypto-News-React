@@ -1,27 +1,28 @@
 // import "./App.css";
 import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
+import CryptoItems from "./cryptoMainItems";
 // import Popup from "./usernamePopup";
 // import { Helmet } from "react-helmet-async";
 
 function MainCrypto() {
   const { login } = usePrivy();
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    // Dynamically load the script
-    const script = document.createElement("script");
-    script.src = "/public/cryptoScripts/index.mjs"; // Ensure this path is correct
-    script.async = true;
-    script.type = "module";
-    document.body.appendChild(script);
+  // useEffect(() => {
+  //   // Dynamically load the script
+  //   const script = document.createElement("script");
+  //   script.src = "/public/cryptoScripts/index.mjs"; // Ensure this path is correct
+  //   script.async = true;
+  //   script.type = "module";
+  //   document.body.appendChild(script);
 
-    return () => {
-      // Cleanup the script when the component is unmounted
-      document.body.removeChild(script);
-    };
-  }, []);
+  //   return () => {
+  //     // Cleanup the script when the component is unmounted
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
   // Add click listeners to .cnUser elements
   const voteElements = document.querySelectorAll(".cnUpVote");
@@ -127,43 +128,12 @@ function MainCrypto() {
               <td>
                 <table cellPadding="0" cellSpacing="0">
                   <tbody>
-                    <div
-                      id="container"
-                      style={{ paddingLeft: "8px", paddingRight: "8px" }}
-                    ></div>
+                    <div style={{ paddingLeft: "8px", paddingRight: "8px" }}>
+                      <CryptoItems />
+                    </div>
                   </tbody>
                 </table>
-                <div
-                  id="pagination-controls"
-                  style={{
-                    paddingTop: "10px",
-                    paddingLeft: "20px",
-                    color: "black",
-                  }}
-                >
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <div
-                      id="back-page"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      Back
-                    </div>
-                    <div
-                      id="next-page"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      More
-                    </div>
-                  </div>
-                </div>
+            
               </td>
             </tr>
             <tr>
