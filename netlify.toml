@@ -7,7 +7,6 @@ from = "/*"
 to = "/index.html"
 status = 200
 force = true
-conditions = { Accept = "text/html" }
 
 # Explicitly allow .mjs and .js files to be served
 [[redirects]]
