@@ -1,29 +1,27 @@
 // import "./App.css";
 import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
+import CryptoNewItems from "../components/crypto/cryptoNewItems";
+import HeaderMain from "./header";
 
 function CryptoNew() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { login, logout, authenticated } = usePrivy();
+  const { login } = usePrivy();
 
   const clickSubmit = () => {
     // handle submit click
   };
+  // Add click listeners to .cnUser elements
+  const voteElements = document.querySelectorAll(".cnUpVote");
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    // Dynamically load the script
-    const script = document.createElement("script");
-    script.src = "/public/cryptoScripts/indexNew.js"; // Ensure this path is correct
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup the script when the component is unmounted
-      document.body.removeChild(script);
-    };
-  }, []);
+  voteElements.forEach((voteElement) => {
+    voteElement.addEventListener("click", () => {
+      const username = localStorage.getItem("username");
+      if (!username || username === "null") {
+        login();
+      }
+    });
+  });
 
   return (
     <div id="root">
@@ -104,16 +102,7 @@ function CryptoNew() {
                           <a style={{ color: "white" }} href="./index.html">
                             TopTop |
                           </a>
-                          {authenticated ? " seanmcd311 | " : ""}{" "}
-                          {authenticated ? (
-                            <a style={{ color: "white" }} onClick={logout}>
-                              logout
-                            </a>
-                          ) : (
-                            <a style={{ color: "white" }} onClick={login}>
-                              login
-                            </a>
-                          )}
+                          <HeaderMain />
                         </span>
                       </td>
                     </tr>
@@ -121,15 +110,14 @@ function CryptoNew() {
                 </table>
               </td>
             </tr>
-            <tr id="pagespace" style={{ height: "10px" }}></tr>
+            <tr id="pagespace" style={{ height: "5px" }}></tr>
             <tr>
               <td>
                 <table cellPadding="0" cellSpacing="0">
                   <tbody>
-                    <div
-                      style={{ paddingLeft: "8px", paddingRight: "8px" }}
-                      id="container"
-                    ></div>
+                    <div style={{ paddingLeft: "8px", paddingRight: "8px" }}>
+                      <CryptoNewItems />
+                    </div>
                   </tbody>
                 </table>
                 <div
@@ -139,30 +127,7 @@ function CryptoNew() {
                     paddingLeft: "20px",
                     color: "black",
                   }}
-                >
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <div
-                      id="back-page"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      Back
-                    </div>
-                    <div
-                      id="next-page"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      More
-                    </div>
-                  </div>
-                </div>
+                ></div>
               </td>
             </tr>
             <tr>

@@ -3,7 +3,7 @@ import { usePrivy } from "@privy-io/react-auth";
 // import { useEffect } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
-import CryptoItems from "./cryptoMainItems";
+import CryptoItems from "../components/crypto/cryptoMainItems";
 // import Popup from "./usernamePopup";
 // import { Helmet } from "react-helmet-async";
 
@@ -115,7 +115,7 @@ function MainCrypto() {
                           <a style={{ color: "white" }} href="/">
                             TopTop |
                           </a>
-                          <HeaderMain></HeaderMain>
+                          <HeaderMain />
                         </span>
                       </td>
                     </tr>
@@ -123,7 +123,7 @@ function MainCrypto() {
                 </table>
               </td>
             </tr>
-            <tr id="pagespace" style={{ height: "10px" }}></tr>
+            <tr id="pagespace" style={{ height: "5px" }}></tr>
             <tr>
               <td>
                 <table cellPadding="0" cellSpacing="0">
@@ -133,7 +133,6 @@ function MainCrypto() {
                     </div>
                   </tbody>
                 </table>
-            
               </td>
             </tr>
             <tr>

@@ -94,6 +94,72 @@ const timeSince = (date: Date) => {
   return `${Math.floor(seconds)} seconds ago`;
 };
 
+// Define types for the API response
+interface UserProtectedData {
+  username: string;
+  upvotedSubmissions: string[];
+  // Add other fields as needed based on the API response
+}
+
+async function fetchCurrentUser1(): Promise<UserProtectedData | void> {
+  const username = localStorage.getItem("username");
+  if (!username) {
+    console.error("No username found in localStorage.");
+    return;
+  }
+
+  const USER_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/findProtected/${username}`;
+
+  try {
+    const response = await fetch(USER_URL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data: UserProtectedData = await response.json();
+
+    // Hide vote elements that the user has already voted on
+    const voteElements = document.querySelectorAll<HTMLElement>(".cnUpVote");
+    voteElements.forEach((voteElement) => {
+      if (data.upvotedSubmissions.includes(voteElement.id)) {
+        voteElement.style.visibility = "hidden";
+
+        const unvoteElement = document.getElementById(`${voteElement.id}$`);
+        if (unvoteElement) {
+          unvoteElement.style.visibility = "visible";
+        }
+      }
+    });
+
+    const unvoteElements =
+      document.querySelectorAll<HTMLElement>(".cnDownVote");
+
+    unvoteElements.forEach((unvoteElement) => {
+      unvoteElement.addEventListener("click", () => {
+        const itemId = unvoteElement.id.replace("$", "");
+
+        unvoteElement.style.visibility = "hidden";
+
+        const upVoteElement = document.getElementById(itemId);
+
+        if (upVoteElement) {
+          upVoteElement.style.visibility = "visible";
+        }
+      });
+    });
+
+    return data;
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+}
+
 // React component
 const CryptoItems: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -103,10 +169,14 @@ const CryptoItems: React.FC = () => {
   useEffect(() => {
     const loadData = async () => {
       const usersData = await fetchData(currentPage);
+      await fetchCurrentUser1();
       setUsers(usersData || []);
     };
     loadData();
   }, [currentPage]);
+  useEffect(() => {
+    fetchCurrentUser1();
+  }, [users]);
 
   const handleVote = async (id: string, isUpvote: boolean) => {
     if (isUpvote) {
@@ -125,6 +195,25 @@ const CryptoItems: React.FC = () => {
     const updatedUsers = await fetchData(currentPage);
     setUsers(updatedUsers || []);
   };
+  const elements = document.querySelectorAll(".cnUser");
+  elements.forEach((element) => {
+    element.addEventListener("click", () => {
+      localStorage.setItem(
+        "SelectedUser",
+        element.textContent ? element.textContent : ""
+      );
+      window.location.href = "/user";
+    });
+  });
+
+  const commentElements = document.querySelectorAll(".cnComment");
+  commentElements.forEach((commentElement) => {
+    commentElement.addEventListener("click", () => {
+      const itemId = commentElement.id.replace("*", "");
+      localStorage.setItem("selectedItem", itemId);
+      window.location.href = "/crypto/item";
+    });
+  });
 
   return (
     <div>
@@ -135,7 +224,12 @@ const CryptoItems: React.FC = () => {
               <tr className="athing">
                 <td className="title">
                   <span
-                    style={{ color: "black", display: "flex", gap: "5px" }}
+                    style={{
+                      color: "black",
+                      display: "flex",
+                      gap: "5px",
+                      marginTop: "5px",
+                    }}
                     className="titleline"
                   >
                     <span
@@ -151,6 +245,8 @@ const CryptoItems: React.FC = () => {
                         src="./Hacker News_files/tpp.png"
                         height="18"
                         alt="Upvote"
+                        className="cnUpVote"
+                        id={`${user._id}`}
                       />
                     </span>
                     <a style={{ color: "black" }} href={user.url}>
@@ -168,15 +264,30 @@ const CryptoItems: React.FC = () => {
                 <td colSpan={2}>
                   <span
                     className="subline"
-                    style={{ marginLeft: "59px", fontSize: "10px" }}
+                    style={{
+                      marginLeft: "59px",
+                      fontSize: "10px",
+                      marginBottom: "50px",
+                    }}
                   >
                     <span className="score">{user.points} points</span> | by{" "}
-                    <a className="cnUser" style={{ cursor: "pointer" }}>
+                    <a
+                      className="cnUser"
+                      style={{ cursor: "pointer" }}
+                      href="/user"
+                    >
                       {user.author}
-                    </a>
+                    </a>{" "}
                     <span className="age" title={user.createdAt}>
                       | {timeSince(new Date(user.createdAt))}
-                    </span>
+                    </span>{" "}
+                    <a
+                      className="cnComment"
+                      style={{ cursor: "pointer" }}
+                      id={`${user._id}*`}
+                    >
+                      | {user.comments?.length | 0}&nbsp;comments
+                    </a>{" "}
                     <a
                       onClick={() => handleDelete(user._id)}
                       style={{ cursor: "pointer", visibility: "visible" }}
@@ -185,8 +296,10 @@ const CryptoItems: React.FC = () => {
                       {user.author === localStorage.getItem("username")
                         ? "delete?"
                         : "flag?"}
-                    </a>
+                    </a>{" "}
                     <a
+                      id={`${user._id}$`}
+                      className="cnDownVote"
                       onClick={() => handleVote(user._id, false)}
                       style={{ cursor: "pointer", visibility: "hidden" }}
                     >
@@ -199,20 +312,47 @@ const CryptoItems: React.FC = () => {
           ))}
         </tbody>
       </table>
-      <button
-        id="back-page"
-        style={{ visibility: currentPage === 0 ? "hidden" : "visible" }}
-        onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          marginTop: "20px",
+          marginLeft: "30px",
+        }}
       >
-        Back
-      </button>
-      <button
-        id="next-page"
-        style={{ visibility: users.length < 30 ? "hidden" : "visible" }}
-        onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
-      >
-        Next
-      </button>
+        {currentPage === 0 ? (
+          <></>
+        ) : (
+          <div
+            id="back-page"
+            style={{
+              // visibility:  "hidden" : "visible",
+              color: "#828282",
+              marginLeft: "10px",
+              marginTop: "0px",
+            }}
+            onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+          >
+            Back
+          </div>
+        )}
+        {users.length < 30 ? (
+          <></>
+        ) : (
+          <div
+            id="next-page"
+            style={{
+              // visibility: users.length < 30 ? "hidden" : "visible",
+              color: "#828282",
+              marginLeft: "10px",
+              marginTop: "0px",
+            }}
+            onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
+          >
+            Next
+          </div>
+        )}
+      </div>
     </div>
   );
 };
