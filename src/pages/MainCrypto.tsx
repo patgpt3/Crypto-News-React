@@ -73,7 +73,7 @@ function MainCrypto() {
                               Crypto
                             </a>{" "}
                           </b>
-                          <a href="/crypto/new" style={{ color: "white" }}>
+                          <a href="/new" style={{ color: "white" }}>
                             new
                           </a>{" "}
                           |{" "}
