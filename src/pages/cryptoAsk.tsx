@@ -1,27 +1,13 @@
 // import "./App.css";
 // import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
+
 import "../../public/news.css"; // Adjust the path to your CSS file
+import CryptoAskItems from "../components/crypto/cryptoAskItems";
 import HeaderMain from "./header";
 
 function CryptoAsk() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    // Dynamically load the script
-    const script = document.createElement("script");
-    script.src = "/public/cryptoScripts/indexAsk.js"; // Ensure this path is correct
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup the script when the component is unmounted
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <div id="root">
-      <script src="indexAsk.js"></script>
       <center>
         <table
           id="hnmain"
@@ -106,43 +92,11 @@ function CryptoAsk() {
               <td>
                 <table cellPadding="0" cellSpacing="0">
                   <tbody>
-                    <div
-                      id="container"
-                      style={{ paddingLeft: "8px", paddingRight: "8px" }}
-                    ></div>
+                    <div style={{ paddingLeft: "8px", paddingRight: "8px" }}>
+                      <CryptoAskItems />
+                    </div>
                   </tbody>
                 </table>
-                <div
-                  id="pagination-controls"
-                  style={{
-                    paddingTop: "10px",
-                    paddingLeft: "20px",
-                    color: "black",
-                  }}
-                >
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <div
-                      id="back-page-ask"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      Back
-                    </div>
-                    <div
-                      id="next-page-ask"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      More
-                    </div>
-                  </div>
-                </div>
               </td>
             </tr>
             <tr>
