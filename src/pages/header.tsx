@@ -1,5 +1,5 @@
 // import "./App.css";
-import { usePrivy, useWallets, useLogin } from "@privy-io/react-auth";
+import { usePrivy, useLogin } from "@privy-io/react-auth";
 import "../../public/news.css"; // Adjust the path to your CSS file
 import { useEffect } from "react";
 import { usePopup } from "../assets/providers/popupContext";
@@ -21,16 +21,6 @@ function HeaderMain() {
     },
   });
   const { isPopupOpen, setPopupOpen } = usePopup();
-  // const { wallets } = useSolanaWallets();
-  const { wallets } = useWallets();
-  useEffect(() => {
-    // if (authenticated) {
-    console.log("user:", user?.id);
-    console.log("userWalletAddress:", user?.wallet?.address);
-    console.log("wallets:", wallets);
-    console.log("wallet:", wallets);
-    // }
-  }, [authenticated, user?.id]);
 
   const handleLogout = async () => {
     try {
@@ -72,29 +62,29 @@ function HeaderMain() {
   useEffect(() => {
     const fetchData = async () => {
       // setLoading(true); // Start loading
-      try {
-        const response = await fetch(
-          `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/find/privy/${user?.id}`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        console.log("api result:", result); // Set data to state
-        console.log("api result username:", result.username); // Set data to state
-        localStorage.setItem("username", result.username);
+      if (user) {
+        try {
+          const response = await fetch(
+            `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/find/privy/${user?.id}`
+          );
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const result = await response.json();
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (err: any) {
-        if (authenticated) {
-          // setIsOpen(true);
-          setPopupOpen(true);
-          console.log("Im open!!!!");
+          localStorage.setItem("username", result.username);
+
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (err: any) {
+          if (authenticated) {
+            // setIsOpen(true);
+            setPopupOpen(true);
+          }
+          console.log("api error:", err?.message || "Something went wrong!");
+        } finally {
+          // window.location.reload();
+          // setLoading(false); // End loading
         }
-        console.log("api error:", err?.message || "Something went wrong!");
-      } finally {
-        // window.location.reload();
-        // setLoading(false); // End loading
       }
     };
 

@@ -1,27 +1,13 @@
 // import "./App.css";
 // import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
+
 import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
+import CryptoJobsItems from "../components/crypto/cryptoJobsItems";
 
 function CryptoJobs() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    // Dynamically load the script
-    const script = document.createElement("script");
-    script.src = "/public/cryptoScripts/indexJobs.js"; // Ensure this path is correct
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup the script when the component is unmounted
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <div id="root">
-      <script src="indexJobs.js"></script>
       <center>
         <table
           id="hnmain"
@@ -101,48 +87,16 @@ function CryptoJobs() {
                 </table>
               </td>
             </tr>
-            <tr id="pagespace" style={{ height: "10px" }}></tr>
+            <tr id="pagespace" style={{ height: "5px" }}></tr>
             <tr>
               <td>
                 <table cellPadding="0" cellSpacing="0">
                   <tbody>
-                    <div
-                      id="container"
-                      style={{ paddingLeft: "8px", paddingRight: "8px" }}
-                    ></div>
+                    <div style={{ paddingLeft: "8px", paddingRight: "8px" }}>
+                      <CryptoJobsItems />
+                    </div>
                   </tbody>
                 </table>
-                <div
-                  id="pagination-controls"
-                  style={{
-                    paddingTop: "10px",
-                    paddingLeft: "20px",
-                    color: "black",
-                  }}
-                >
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <div
-                      id="back-page-jobs"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      Back
-                    </div>
-                    <div
-                      id="next-page-jobs"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      More
-                    </div>
-                  </div>
-                </div>
               </td>
             </tr>
             <tr>
