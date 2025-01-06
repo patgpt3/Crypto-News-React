@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 // Helper functions for fetching data
 const API_URL =
-  "https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/main/pages";
+  "https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/show/pages";
 
 const fetchData = async (pageNum: number) => {
   try {
@@ -136,7 +136,6 @@ async function fetchCurrentUser1(): Promise<UserProtectedData | void> {
         }
       }
     });
-
     const unvoteElements =
       document.querySelectorAll<HTMLElement>(".cnDownVote");
 
@@ -161,7 +160,7 @@ async function fetchCurrentUser1(): Promise<UserProtectedData | void> {
 }
 
 // React component
-const CryptoItems: React.FC = () => {
+const CryptoShowItems: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [users, setUsers] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -217,7 +216,7 @@ const CryptoItems: React.FC = () => {
 
   return (
     <div>
-      <table id="container">
+      <table id="container-new">
         <tbody style={{ display: "grid" }}>
           {users.map((user, index) => (
             <React.Fragment key={user._id}>
@@ -242,7 +241,7 @@ const CryptoItems: React.FC = () => {
                       <img
                         onClick={() => handleVote(user._id, true)}
                         style={{ cursor: "pointer", marginRight: "8px" }}
-                        src="./Hacker News_files/tpp.png"
+                        src="/Hacker News_files/tpp.png"
                         height="18"
                         alt="Upvote"
                         className="cnUpVote"
@@ -264,11 +263,7 @@ const CryptoItems: React.FC = () => {
                 <td colSpan={2}>
                   <span
                     className="subline"
-                    style={{
-                      marginLeft: "59px",
-                      fontSize: "10px",
-                      marginBottom: "50px",
-                    }}
+                    style={{ marginLeft: "59px", fontSize: "10px" }}
                   >
                     <span className="score">{user.points} points</span> | by{" "}
                     <a
@@ -357,4 +352,4 @@ const CryptoItems: React.FC = () => {
   );
 };
 
-export default CryptoItems;
+export default CryptoShowItems;

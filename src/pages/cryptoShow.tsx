@@ -1,27 +1,12 @@
 // import "./App.css";
 // import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
+import CryptoShowItems from "../components/crypto/cryptoShowItems";
 
 function CryptoShow() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    // Dynamically load the script
-    const script = document.createElement("script");
-    script.src = "/public/cryptoScripts/indexShow.js"; // Ensure this path is correct
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup the script when the component is unmounted
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <div id="root">
-      <script src="indexShow.js"></script>
       <center>
         <table
           id="hnmain"
@@ -42,7 +27,7 @@ function CryptoShow() {
                   <tbody>
                     <tr>
                       <td style={{ lineHeight: "12pt", height: "18px" }}>
-                      <span className="pagetop" style={{ color: "white" }}>
+                        <span className="pagetop" style={{ color: "white" }}>
                           <b className="hnname" style={{ color: "white" }}>
                             <a
                               style={{ color: "white", marginLeft: "3px" }}
@@ -101,15 +86,14 @@ function CryptoShow() {
                 </table>
               </td>
             </tr>
-            <tr id="pagespace" style={{ height: "10px" }}></tr>
+            <tr id="pagespace" style={{ height: "5px" }}></tr>
             <tr>
               <td>
                 <table cellPadding="0" cellSpacing="0">
                   <tbody>
-                    <div
-                      id="container"
-                      style={{ paddingLeft: "8px", paddingRight: "8px" }}
-                    ></div>
+                    <div style={{ paddingLeft: "8px", paddingRight: "8px" }}>
+                      <CryptoShowItems />
+                    </div>
                   </tbody>
                 </table>
                 <div
@@ -119,30 +103,7 @@ function CryptoShow() {
                     paddingLeft: "20px",
                     color: "black",
                   }}
-                >
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <div
-                      id="back-page-show"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      Back
-                    </div>
-                    <div
-                      id="next-page-show"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      More
-                    </div>
-                  </div>
-                </div>
+                ></div>
               </td>
             </tr>
             <tr>

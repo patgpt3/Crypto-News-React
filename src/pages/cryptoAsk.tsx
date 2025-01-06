@@ -101,7 +101,7 @@ function CryptoAsk() {
                 </table>
               </td>
             </tr>
-            <tr id="pagespace" style={{ height: "10px" }}></tr>
+            <tr id="pagespace" style={{ height: "5px" }}></tr>
             <tr>
               <td>
                 <table cellPadding="0" cellSpacing="0">
