@@ -81,7 +81,7 @@ function MainCrypto() {
                             comments
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto/ask">
+                          <a style={{ color: "white" }} href="/crypto-ask">
                             ask
                           </a>{" "}
                           |{" "}
@@ -89,7 +89,7 @@ function MainCrypto() {
                             show
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto/jobs">
+                          <a style={{ color: "white" }} href="/crypto-jobs">
                             jobs
                           </a>{" "}
                           |{" "}

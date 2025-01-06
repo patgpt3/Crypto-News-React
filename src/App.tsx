@@ -37,9 +37,9 @@ function App() {
       <Route path="/crypto" element={<MainCrypto />} />
       <Route path="/new" element={<CryptoNew />} />
       <Route path="/crypto/comments" element={<CommentsCrypto />} />
-      <Route path="/crypto/ask" element={<CryptoAsk />} />
+      <Route path="/crypto-ask" element={<CryptoAsk />} />
       <Route path="/crypto/show" element={<CryptoShow />} />
-      <Route path="/crypto/jobs" element={<MainCrypto />} />
+      <Route path="/crypto-jobs" element={<MainCrypto />} />
       <Route path="/crypto/submit" element={<CryptoSubmit />} />
 
       <Route path="/profile" element={<CryptoProfile />} />
