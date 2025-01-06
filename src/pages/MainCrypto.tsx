@@ -73,11 +73,11 @@ function MainCrypto() {
                               Crypto
                             </a>{" "}
                           </b>
-                          <a href="/new" style={{ color: "white" }}>
+                          <a href="/crypto-new" style={{ color: "white" }}>
                             new
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto/comments">
+                          <a style={{ color: "white" }} href="/crypto-comments">
                             comments
                           </a>{" "}
                           |{" "}
@@ -85,7 +85,7 @@ function MainCrypto() {
                             ask
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto/show">
+                          <a style={{ color: "white" }} href="/crypto-show">
                             show
                           </a>{" "}
                           |{" "}
@@ -96,7 +96,7 @@ function MainCrypto() {
                           <a
                             style={{ color: "white" }}
                             // onClick={clickSubmit}
-                            href="/crypto/submit"
+                            href="/crypto-submit"
                             rel="nofollow"
                           >
                             submit

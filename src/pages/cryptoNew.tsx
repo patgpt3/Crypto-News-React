@@ -7,9 +7,7 @@ import HeaderMain from "./header";
 function CryptoNew() {
   const { login } = usePrivy();
 
-  const clickSubmit = () => {
-    // handle submit click
-  };
+
   // Add click listeners to .cnUser elements
   const voteElements = document.querySelectorAll(".cnUpVote");
 
@@ -53,29 +51,30 @@ function CryptoNew() {
                               Crypto
                             </a>{" "}
                           </b>
-                          <a href="/crypto/new" style={{ color: "white" }}>
+                          <a href="/crypto-new" style={{ color: "white" }}>
                             new
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto/comments">
+                          <a style={{ color: "white" }} href="/crypto-comments">
                             comments
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="./cn_ask.html">
+                          <a style={{ color: "white" }} href="/crypto-ask">
                             ask
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="./cn_show.html">
+                          <a style={{ color: "white" }} href="/crypto-show">
                             show
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="./cn_jobs.html">
+                          <a style={{ color: "white" }} href="/crypto-jobs">
                             jobs
                           </a>{" "}
                           |{" "}
                           <a
                             style={{ color: "white" }}
-                            onClick={clickSubmit}
+                            // onClick={clickSubmit}
+                            href="/crypto-submit"
                             rel="nofollow"
                           >
                             submit

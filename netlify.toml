@@ -2,8 +2,3 @@
 publish = "dist" # Replace with your actual build folder, typically "dist" for Vite
 command = "npm run build"
 
-[[redirects]]
-from = "/crypto/show"
-to = "/index.html"
-status = 200
-force = true

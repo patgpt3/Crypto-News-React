@@ -20,6 +20,7 @@ import CryptoUserSubmissions from "./pages/cryptoUserSubmissions";
 import CryptoUserComments from "./pages/cryptoUserComments";
 import CryptoUserVotes from "./pages/cryptoUserVotes";
 import CryptoProfileJobs from "./pages/cryptoProfileJobs";
+import CryptoJobs from "./pages/cryptoJobs";
 
 function App() {
   // const { login, logout, authenticated } = usePrivy();
@@ -28,34 +29,35 @@ function App() {
   //   // handle submit click
   // };
 
-
-
   return (
     <Routes>
       <Route path="/" element={<TopTopNetwork />} />
       {/* crypto */}
       <Route path="/crypto" element={<MainCrypto />} />
-      <Route path="/new" element={<CryptoNew />} />
-      <Route path="/crypto/comments" element={<CommentsCrypto />} />
+      <Route path="/crypto-new" element={<CryptoNew />} />
+      <Route path="/crypto-comments" element={<CommentsCrypto />} />
       <Route path="/crypto-ask" element={<CryptoAsk />} />
-      <Route path="/crypto/show" element={<CryptoShow />} />
-      <Route path="/crypto-jobs" element={<MainCrypto />} />
-      <Route path="/crypto/submit" element={<CryptoSubmit />} />
+      <Route path="/crypto-show" element={<CryptoShow />} />
+      <Route path="/crypto-jobs" element={<CryptoJobs />} />
+      <Route path="/crypto-submit" element={<CryptoSubmit />} />
 
       <Route path="/profile" element={<CryptoProfile />} />
-      <Route path="/crypto/profile/jobs" element={<CryptoProfileJobs />} />
+      <Route path="/crypto-profile-jobs" element={<CryptoProfileJobs />} />
 
-      <Route path="/crypto/comments/selected" element={<CryptoCommentSelected />} />
-      <Route path="/crypto/comments/reply" element={<CryptoReplySelected />} />
+      <Route
+        path="/crypto-comments-selected"
+        element={<CryptoCommentSelected />}
+      />
+      <Route path="/crypto-comments-reply" element={<CryptoReplySelected />} />
 
-      <Route path="/crypto/item" element={<CryptoNewsItem />} />
+      <Route path="/crypto-item" element={<CryptoNewsItem />} />
 
-      <Route path="/crypto/jobs/selected" element={<CryptoJobSelected />} />
+      <Route path="/crypto-jobs-selected" element={<CryptoJobSelected />} />
 
       <Route path="/user" element={<CryptoUser />} />
-      <Route path="/user/comments" element={<CryptoUserComments />} />
-      <Route path="/user/submissions" element={<CryptoUserSubmissions />} />
-      <Route path="/user/votes" element={<CryptoUserVotes />} />
+      <Route path="/user-comments" element={<CryptoUserComments />} />
+      <Route path="/user-submissions" element={<CryptoUserSubmissions />} />
+      <Route path="/user-votes" element={<CryptoUserVotes />} />
 
       {/* ai */}
       <Route path="/ai" element={<MainCrypto />} />

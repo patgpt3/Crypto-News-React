@@ -51,30 +51,30 @@ function CryptoAsk() {
                               Crypto
                             </a>{" "}
                           </b>
-                          <a href="/crypto/new" style={{ color: "white" }}>
+                          <a href="/crypto-new" style={{ color: "white" }}>
                             new
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto/comments">
+                          <a style={{ color: "white" }} href="/crypto-comments">
                             comments
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto/ask">
+                          <a style={{ color: "white" }} href="/crypto-ask">
                             ask
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto/show">
+                          <a style={{ color: "white" }} href="/crypto-show">
                             show
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto/jobs">
+                          <a style={{ color: "white" }} href="/crypto-jobs">
                             jobs
                           </a>{" "}
                           |{" "}
                           <a
                             style={{ color: "white" }}
                             // onClick={clickSubmit}
-                            href="/crypto/submit"
+                            href="/crypto-submit"
                             rel="nofollow"
                           >
                             submit
