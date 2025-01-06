@@ -3,6 +3,6 @@ publish = "dist" # Replace with your actual build folder, typically "dist" for V
 command = "npm run build"
 
 [[redirects]]
-from = "/crypto/*"
+from = "/crypto/jobs"
 to = "/index.html"
 status = 200
