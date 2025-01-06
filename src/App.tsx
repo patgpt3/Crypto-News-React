@@ -8,7 +8,7 @@ import CryptoNew from "./pages/cryptoNew";
 import TopTopNetwork from "./pages/TopTopNetwork";
 import CryptoAsk from "./pages/cryptoAsk";
 import CryptoShow from "./pages/cryptoShow";
-import CryptoJobs from "./pages/cryptoJobs";
+// import CryptoJobs from "./pages/cryptoJobs";
 import CryptoSubmit from "./pages/cryptoSubmit";
 import CryptoProfile from "./pages/cryptoProfile";
 import CryptoUser from "./pages/cryptoUser";
@@ -35,11 +35,11 @@ function App() {
       <Route path="/" element={<TopTopNetwork />} />
       {/* crypto */}
       <Route path="/crypto" element={<MainCrypto />} />
-      <Route path="/crypto/new" element={<CryptoNew />} />
+      <Route path="/new" element={<CryptoNew />} />
       <Route path="/crypto/comments" element={<CommentsCrypto />} />
       <Route path="/crypto/ask" element={<CryptoAsk />} />
       <Route path="/crypto/show" element={<CryptoShow />} />
-      <Route path="/crypto/jobs" element={<CryptoJobs />} />
+      <Route path="/crypto/jobs" element={<MainCrypto />} />
       <Route path="/crypto/submit" element={<CryptoSubmit />} />
 
       <Route path="/profile" element={<CryptoProfile />} />
