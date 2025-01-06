@@ -25,7 +25,6 @@ function CryptoNew() {
 
   return (
     <div id="root">
-      <script src="index.js"></script>
       <center>
         <table
           id="hnmain"
