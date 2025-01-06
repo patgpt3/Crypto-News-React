@@ -216,7 +216,7 @@ const CryptoNewItems: React.FC = () => {
 
   return (
     <div>
-      <table id="container">
+      <table id="container-new">
         <tbody style={{ display: "grid" }}>
           {users.map((user, index) => (
             <React.Fragment key={user._id}>
