@@ -1,6 +1,5 @@
 import "./App.css";
 // import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
 import "../public/news.css"; // Adjust the path to your CSS file
 import { Route, Routes } from "react-router-dom";
 import MainCrypto from "./pages/MainCrypto";
@@ -29,18 +28,7 @@ function App() {
   //   // handle submit click
   // };
 
-  useEffect(() => {
-    // Dynamically load the script
-    const script = document.createElement("script");
-    script.src = "/public/index.js"; // Ensure this path is correct
-    script.async = true;
-    document.body.appendChild(script);
 
-    return () => {
-      // Cleanup the script when the component is unmounted
-      document.body.removeChild(script);
-    };
-  }, []);
 
   return (
     <Routes>
