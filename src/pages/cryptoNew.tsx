@@ -119,14 +119,6 @@ function CryptoNew() {
                     </div>
                   </tbody>
                 </table>
-                <div
-                  id="pagination-controls"
-                  style={{
-                    paddingTop: "10px",
-                    paddingLeft: "20px",
-                    color: "black",
-                  }}
-                ></div>
               </td>
             </tr>
             <tr>
