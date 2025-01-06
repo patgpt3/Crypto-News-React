@@ -1,11 +1,10 @@
 // import "./App.css";
 import { usePrivy } from "@privy-io/react-auth";
 import "../../public/news.css"; // Adjust the path to your CSS file
-import CryptoNewItems from "../components/crypto/cryptoNewItems";
+// import CryptoNewItems from "../components/crypto/cryptoNewItems";
 import HeaderMain from "./header";
 
 function CryptoNew() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { login } = usePrivy();
 
   const clickSubmit = () => {
@@ -115,7 +114,7 @@ function CryptoNew() {
                 <table cellPadding="0" cellSpacing="0">
                   <tbody>
                     <div style={{ paddingLeft: "8px", paddingRight: "8px" }}>
-                      <CryptoNewItems />
+                      {/* <CryptoNewItems /> */}
                     </div>
                   </tbody>
                 </table>
