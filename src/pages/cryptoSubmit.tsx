@@ -4,13 +4,58 @@ import { usePrivy } from "@privy-io/react-auth";
 
 // Extend the global Window interface
 declare global {
-    interface Window {
-      submitItem: () => void;
-    }
+  interface Window {
+    submitItem: () => void;
   }
+}
+
+const API_URL = "https://crypto-api-3-6bf97d4979d1.herokuapp.com/items";
+
+const fetchData = async (title: string, url: string, body: string) => {
+  // const title = document.getElementById("title")?.value;
+  // const url = document.getElementById("url").value;
+  // const body = document.getElementById("body").value;
+  const username = localStorage.getItem("username");
+
+  console.log("title:", title);
+  console.log("url:", url);
+
+  console.log("body:", body);
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: title,
+        url: url,
+        points: 0,
+        text: body || "",
+        author: username,
+        isFlagged: 0,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("from within:", data);
+    return data;
+    // Use this data as needed in your frontend
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+};
 
 const CryptoSubmit = () => {
   const [isNarrow, setIsNarrow] = useState(window.innerWidth <= 750);
+  const [titleInput, setTitleInput] = useState("");
+  const [urlInput, setUrlInput] = useState("");
+  const [bodyInput, setBodyInput] = useState("");
   const { login } = usePrivy();
   useEffect(() => {
     const handleResize = () => {
@@ -25,31 +70,49 @@ const CryptoSubmit = () => {
     };
   }, []);
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    // Dynamically load the script
-    const script = document.createElement("script");
-    script.src = "/public/cryptoScripts/indexSubmit.js"; // Ensure this path is correct
-    script.async = true;
-    document.body.appendChild(script);
+  // useEffect(() => {
+  //   // Dynamically load the script
+  //   const script = document.createElement("script");
+  //   script.src = "/public/cryptoScripts/indexSubmit.js"; // Ensure this path is correct
+  //   script.async = true;
+  //   document.body.appendChild(script);
 
-    return () => {
-      // Cleanup the script when the component is unmounted
-      document.body.removeChild(script);
-    };
-  }, []);
+  //   return () => {
+  //     // Cleanup the script when the component is unmounted
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
+  // const fetchData = async (id: string) => {
+  //   await deleteItem(id);
+  //   // Update users data after deletion
+  //   const updatedUsers = await fetchData(currentPage);
+  //   setUsers(updatedUsers || []);
+  // };
 
-  const handleButtonClick = () => {
+  const handleSubmit = async () => {
     const username = localStorage.getItem("username");
-      if (!username || username === "null") {
-        login();
-      }
-    if (window.submitItem) {
-      window.submitItem(); // Call the global function
+    if (!username || username === "null") {
+      login();
     } else {
-      console.error("submitItem is not defined.");
+      await fetchData(titleInput, urlInput, bodyInput);
+      window.location.href = "/crypto";
     }
+
+    // Update users data after deletion
   };
+
+  // const handleButtonClick = () => {
+  //   const username = localStorage.getItem("username");
+  //   if (!username || username === "null") {
+  //     login();
+  //   }
+  //   if (window.submitItem) {
+  //     window.submitItem(); // Call the global function
+  //   } else {
+  //     console.error("submitItem is not defined.");
+  //   }
+  // };
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const title = e.target.value;
     const remainingChars = title.length - 80;
@@ -87,7 +150,7 @@ const CryptoSubmit = () => {
                           color: "white",
                         }}
                       >
-                         <span className="pagetop" style={{ color: "white" }}>
+                        <span className="pagetop" style={{ color: "white" }}>
                           <b className="hnname" style={{ color: "white" }}>
                             <a
                               style={{ color: "white", marginLeft: "3px" }}
@@ -155,6 +218,8 @@ const CryptoSubmit = () => {
                           type="text"
                           name="title"
                           id="title"
+                          value={titleInput}
+                          onChange={(e) => setTitleInput(e.target.value)}
                           style={{ minWidth: "314px" }}
                           onInput={handleTitleChange}
                         />
@@ -166,6 +231,8 @@ const CryptoSubmit = () => {
                         <input
                           type="url"
                           name="url"
+                          value={urlInput}
+                          onChange={(e) => setUrlInput(e.target.value)}
                           id="url"
                           size={50}
                           style={{ width: "90%", maxWidth: "414px" }}
@@ -179,6 +246,8 @@ const CryptoSubmit = () => {
                           name="text"
                           rows={4}
                           cols={49}
+                          value={bodyInput}
+                          onChange={(e) => setBodyInput(e.target.value)}
                           id="body"
                         ></textarea>
                       </td>
@@ -186,7 +255,7 @@ const CryptoSubmit = () => {
                     <tr>
                       <td></td>
                       <td>
-                        <button onClick={handleButtonClick}>Submit</button>
+                        <button onClick={handleSubmit}>Submit</button>
                       </td>
                     </tr>
                     <tr>
