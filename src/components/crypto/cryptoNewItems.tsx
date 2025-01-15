@@ -241,7 +241,7 @@ const CryptoNewItems: React.FC = () => {
                       <img
                         onClick={() => handleVote(user._id, true)}
                         style={{ cursor: "pointer", marginRight: "8px" }}
-                        src="/Hacker News_files/tpp.png"
+                        src="/tpp.png"
                         height="18"
                         alt="Upvote"
                         className="cnUpVote"
