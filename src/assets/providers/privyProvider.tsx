@@ -4,7 +4,7 @@ import { toSolanaWalletConnectors } from "@privy-io/react-auth/solana";
 export default function Providers({ children }: { children: React.ReactNode }) {
   const solanaConnectors = toSolanaWalletConnectors({
     // By default, shouldAutoConnect is enabled
-    shouldAutoConnect: true,
+    shouldAutoConnect: false,
   });
 
   console.log("Solana Connectors:", solanaConnectors);
