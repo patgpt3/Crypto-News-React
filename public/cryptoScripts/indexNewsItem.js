@@ -560,7 +560,7 @@ async function fetchReplies(itemReplies, index1) {
         const commentId = element.name;
         localStorage.setItem("selectedCommentIn", commentId);
         localStorage.setItem("selectedReplyIn", replyId);
-        window.location.href = "/crypto/comments/reply";
+        window.location.href = "/crypto-comments-reply";
       });
     });
 
@@ -1077,7 +1077,7 @@ async function main() {
       console.log(element.textContent);
       const commentId = element.id.replace("&", "");
       localStorage.setItem("selectedCommentIn", commentId);
-      window.location.href = "/crypto/comments/selected";
+      window.location.href = "/crypto-comments-selected";
     });
   });
 
@@ -1151,7 +1151,7 @@ async function postComment() {
       .then((data) => {
         // Handle the API response data
         console.log(data);
-        window.location.href = "/crypto/item";
+        window.location.href = "/crypto-item";
       })
       .catch((error) => {
         // Handle errors

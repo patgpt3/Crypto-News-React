@@ -158,7 +158,7 @@ async function main() {
 
     // Store the JSON string in local storage
     localStorage.setItem("SelectedItems", jsonArray);
-    window.location.href = "/user/submissions";
+    window.location.href = "/user-submissions";
   });
   userComments.addEventListener("click", () => {
     const myArray = users.comments;
@@ -168,7 +168,7 @@ async function main() {
 
     // Store the JSON string in local storage
     localStorage.setItem("SelectedComments", jsonArray);
-    window.location.href = "/user/comments";
+    window.location.href = "/user-comments";
   });
   votes.addEventListener("click", () => {
     localStorage.setItem("SelectedItems", users.upvotedSubmissions);
@@ -179,7 +179,7 @@ async function main() {
 
     // Store the JSON string in local storage
     localStorage.setItem("SelectedItems", jsonArray);
-    window.location.href = "/user/votes";
+    window.location.href = "/user-votes";
   });
 }
 

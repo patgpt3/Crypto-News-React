@@ -75,9 +75,7 @@ function CryptoShow() {
                             {/* Optional Login Info */}
                           </div>
 
-                          <a style={{ color: "white" }} href="/">
-                            TopTop |
-                          </a>
+                        
                           <HeaderMain></HeaderMain>
                         </span>
                       </td>
@@ -96,14 +94,6 @@ function CryptoShow() {
                     </div>
                   </tbody>
                 </table>
-                <div
-                  id="pagination-controls"
-                  style={{
-                    paddingTop: "10px",
-                    paddingLeft: "20px",
-                    color: "black",
-                  }}
-                ></div>
               </td>
             </tr>
             <tr>

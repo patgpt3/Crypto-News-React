@@ -107,9 +107,7 @@ function CryptoProfileJobs() {
                             {/* Optional Login Info */}
                           </div>
 
-                          <a style={{ color: "white" }} href="/">
-                            TopTop |
-                          </a>
+                        
                           <HeaderMain></HeaderMain>
                         </span>
                       </td>

@@ -112,9 +112,6 @@ function MainCrypto() {
                             {/* Optional Login Info */}
                           </div>
 
-                          <a style={{ color: "white" }} href="/">
-                            TopTop |
-                          </a>
                           <HeaderMain />
                         </span>
                       </td>

@@ -1,27 +1,28 @@
 // import "./App.css";
 // import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
+import IndexCurrentUser from "../components/crypto/profileContent";
 import HeaderMain from "./header";
 
 function CryptoProfile() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    // Dynamically load the script
-    const script = document.createElement("script");
-    script.src = "/public/cryptoScripts/indexCurrentUser.js"; // Ensure this path is correct
-    script.async = true;
-    document.body.appendChild(script);
+  // // eslint-disable-next-line react-hooks/rules-of-hooks
+  // useEffect(() => {
+  //   // Dynamically load the script
+  //   const script = document.createElement("script");
+  //   script.src = "/public/cryptoScripts/indexCurrentUser.js"; // Ensure this path is correct
+  //   script.async = true;
+  //   document.body.appendChild(script);
 
-    return () => {
-      // Cleanup the script when the component is unmounted
-      document.body.removeChild(script);
-    };
-  }, []);
+  //   return () => {
+  //     // Cleanup the script when the component is unmounted
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
   return (
     <div id="root">
-      <script src="indexCurrentUser.js"></script>
+      {/* <script src="indexCurrentUser.js"></script> */}
       <center>
         <table
           id="hnmain"
@@ -32,7 +33,7 @@ function CryptoProfile() {
         >
           <tbody>
             <tr>
-              <td style={{ backgroundColor: "#A9A9A9" }}>
+              <td style={{ backgroundColor: "#053eff" }}>
                 <table
                   cellPadding="0"
                   cellSpacing="0"
@@ -42,46 +43,43 @@ function CryptoProfile() {
                   <tbody>
                     <tr>
                       <td style={{ lineHeight: "12pt", height: "18px" }}>
-                      <span className="pagetop" style={{ color: "white" }}>
+                        <span className="pagetop" style={{ color: "white" }}>
                           <b className="hnname" style={{ color: "white" }}>
                             <a
                               style={{ color: "white", marginLeft: "3px" }}
-                              href="/"
+                              href="/crypto"
                             >
-                              TopTop
+                              Crypto
                             </a>{" "}
                           </b>
-                          <a href="/crypto" style={{ color: "white" }}>
-                            Crypto
+                          <a href="/crypto-new" style={{ color: "white" }}>
+                            new
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/ai">
-                            AI
+                          <a style={{ color: "white" }} href="/crypto-comments">
+                            comments
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/memecoins">
-                            Memecoins
+                          <a style={{ color: "white" }} href="/crypto-ask">
+                            ask
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/depin">
-                            DePIN
+                          <a style={{ color: "white" }} href="/crypto-show">
+                            show
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/nft">
-                            NFT
+                          <a style={{ color: "white" }} href="/crypto-jobs">
+                            jobs
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/desci">
-                            DeSci
-                          </a>{" "}
-                          |{" "}
-                          <a style={{ color: "white" }} href="/film">
-                            Film
-                          </a>{" "}
-                          |{" "}
-                          <a style={{ color: "white" }} href="/gaming">
-                            Gaming
-                          </a>{" "}
+                          <a
+                            style={{ color: "white" }}
+                            // onClick={clickSubmit}
+                            href="/crypto-submit"
+                            rel="nofollow"
+                          >
+                            submit
+                          </a>
                         </span>
                       </td>
                       <td style={{ textAlign: "right", paddingRight: "4px" }}>
@@ -93,9 +91,6 @@ function CryptoProfile() {
                             {/* Optional Login Info */}
                           </div>
 
-                          <a style={{ color: "white" }} href="/">
-                            TopTop |
-                          </a>
                           <HeaderMain></HeaderMain>
                         </span>
                       </td>
@@ -110,9 +105,14 @@ function CryptoProfile() {
                 <table cellPadding="0" cellSpacing="0">
                   <tbody>
                     <div
-                      id="container"
-                      style={{ paddingLeft: "8px", paddingRight: "8px" }}
-                    ></div>
+                      style={{
+                        paddingLeft: "20px",
+                        paddingRight: "20px",
+                        paddingTop: "20px",
+                      }}
+                    >
+                      <IndexCurrentUser />
+                    </div>
                   </tbody>
                 </table>
               </td>
@@ -123,7 +123,7 @@ function CryptoProfile() {
                 <table width="100%" cellSpacing="0" cellPadding="1">
                   <tbody>
                     <tr>
-                      <td style={{ backgroundColor: "#A9A9A9" }}></td>
+                      <td style={{ backgroundColor: "#053eff" }}></td>
                     </tr>
                   </tbody>
                 </table>

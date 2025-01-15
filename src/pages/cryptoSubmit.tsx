@@ -196,9 +196,7 @@ const CryptoSubmit = () => {
                           color: "white",
                         }}
                       >
-                        <a style={{ color: "white" }} href="./index.html">
-                          TopTop |
-                        </a>
+                  
                         <HeaderMain />
                       </td>
                     </tr>
@@ -264,10 +262,21 @@ const CryptoSubmit = () => {
                     <tr>
                       <td></td>
                       <td>
-                        Leave url blank to submit a question for discussion. If
-                        there is no url, text will appear at the top of the
-                        thread. If there is a url, text is optional.
+                        <div style={{ marginRight: "20px" }}>
+                          Leave url blank to submit a question for discussion.
+                          If there is no url, text will appear at the top of the
+                          thread. If there is a url, text is optional.
+                        </div>
                       </td>
+                    </tr>
+                  </tbody>
+                </table>{" "}
+                <br />
+                <br />
+                <table width="100%" cellSpacing="0" cellPadding="1">
+                  <tbody>
+                    <tr>
+                      <td style={{ backgroundColor: "#053eff" }}></td>
                     </tr>
                   </tbody>
                 </table>
@@ -276,7 +285,7 @@ const CryptoSubmit = () => {
                   The MIT License (MIT)
                   <br />
                   Copyright (c) 2024 Y Combinator Hacker News
-                  <br />
+                  {/* <br />
                   Permission is hereby granted, free of charge, to any person
                   obtaining a copy of this software and associated documentation
                   files (the "Software"), to deal in the Software without
@@ -286,8 +295,19 @@ const CryptoSubmit = () => {
                   Software is furnished to do so, subject to the following
                   conditions:
                   <br />
+                  The above copyright notice and this permission notice shall be
+                  included in all copies or substantial portions of the
+                  Software.
+                  <br />
                   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
-                  KIND.
+                  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+                  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+                  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+                  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+                  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+                  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */}
+                  <br />
                 </center>
               </td>
             </tr>

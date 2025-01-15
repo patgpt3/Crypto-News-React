@@ -1,29 +1,31 @@
 // import "./App.css";
-import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
+// import { usePrivy } from "@privy-io/react-auth";
+// import { useEffect } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
+import CommentsPage from "../components/crypto/cryptoCommentItems2";
+import HeaderMain from "./header";
 
 function CommentsCrypto() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { login, logout, authenticated } = usePrivy();
+  // const { login, logout, authenticated } = usePrivy();
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    // Dynamically load the script
-    const script = document.createElement("script");
-    script.src = "/public/cryptoScripts/indexComments.js"; // Ensure this path is correct
-    script.async = true;
-    document.body.appendChild(script);
+  // // eslint-disable-next-line react-hooks/rules-of-hooks
+  // useEffect(() => {
+  //   // Dynamically load the script
+  //   const script = document.createElement("script");
+  //   script.src = "/public/cryptoScripts/indexComments.js"; // Ensure this path is correct
+  //   script.async = true;
+  //   document.body.appendChild(script);
 
-    return () => {
-      // Cleanup the script when the component is unmounted
-      document.body.removeChild(script);
-    };
-  }, []);
+  //   return () => {
+  //     // Cleanup the script when the component is unmounted
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
   return (
     <div id="root">
-      <script src="indexComments.js"></script>
+      {/* <script src="indexComments.js"></script> */}
       <center>
         <table
           id="hnmain"
@@ -44,7 +46,7 @@ function CommentsCrypto() {
                   <tbody>
                     <tr>
                       <td style={{ lineHeight: "12pt", height: "18px" }}>
-                      <span className="pagetop" style={{ color: "white" }}>
+                        <span className="pagetop" style={{ color: "white" }}>
                           <b className="hnname" style={{ color: "white" }}>
                             <a
                               style={{ color: "white", marginLeft: "3px" }}
@@ -98,19 +100,8 @@ function CommentsCrypto() {
                           >
                             {username ? `${username} |` : 'login'}
                           </a> */}
-                          <a style={{ color: "white" }} href="./index.html">
-                            TopTop |
-                          </a>
-                          {authenticated ? " seanmcd311 | " : ""}{" "}
-                          {authenticated ? (
-                            <a style={{ color: "white" }} onClick={logout}>
-                              logout
-                            </a>
-                          ) : (
-                            <a style={{ color: "white" }} onClick={login}>
-                              login
-                            </a>
-                          )}
+
+                          <HeaderMain />
                         </span>
                       </td>
                     </tr>
@@ -123,43 +114,12 @@ function CommentsCrypto() {
               <td>
                 <table cellPadding="0" cellSpacing="0">
                   <tbody>
-                    <div
-                      style={{ paddingLeft: "8px", paddingRight: "8px" }}
-                      id="containerComments"
-                    ></div>
+                  <tr id="pagespace" style={{ height: "10px" }}></tr>
+                    <div style={{ paddingLeft: "8px", paddingRight: "8px" }}>
+                      <CommentsPage />
+                    </div>
                   </tbody>
                 </table>
-                <div
-                  id="pagination-controls"
-                  style={{
-                    paddingTop: "10px",
-                    paddingLeft: "20px",
-                    color: "black",
-                  }}
-                >
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    <div
-                      id="back-page-comment"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      Back
-                    </div>
-                    <div
-                      id="next-page-comment"
-                      style={{
-                        color: "#828282",
-                        margin: "10px",
-                        marginTop: "0px",
-                      }}
-                    >
-                      More
-                    </div>
-                  </div>
-                </div>
               </td>
             </tr>
             <tr>

@@ -32,7 +32,7 @@ function CryptoUser() {
         >
           <tbody>
             <tr>
-              <td style={{ backgroundColor: "#A9A9A9" }}>
+              <td style={{ backgroundColor: "#053eff" }}>
                 <table
                   cellPadding="0"
                   cellSpacing="0"
@@ -42,46 +42,43 @@ function CryptoUser() {
                   <tbody>
                     <tr>
                       <td style={{ lineHeight: "12pt", height: "18px" }}>
-                        <span className="pagetop" style={{ color: "white" }}>
+                      <span className="pagetop" style={{ color: "white" }}>
                           <b className="hnname" style={{ color: "white" }}>
                             <a
                               style={{ color: "white", marginLeft: "3px" }}
-                              href="/"
+                              href="/crypto"
                             >
-                              TopTop
+                              Crypto
                             </a>{" "}
                           </b>
-                          <a href="/crypto" style={{ color: "white" }}>
-                            Crypto
+                          <a href="/crypto-new" style={{ color: "white" }}>
+                            new
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/ai">
-                            AI
+                          <a style={{ color: "white" }} href="/crypto-comments">
+                            comments
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/memecoins">
-                            Memecoins
+                          <a style={{ color: "white" }} href="/crypto-ask">
+                            ask
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/depin">
-                            DePIN
+                          <a style={{ color: "white" }} href="/crypto-show">
+                            show
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/nft">
-                            NFT
+                          <a style={{ color: "white" }} href="/crypto-jobs">
+                            jobs
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/desci">
-                            DeSci
-                          </a>{" "}
-                          |{" "}
-                          <a style={{ color: "white" }} href="/film">
-                            Film
-                          </a>{" "}
-                          |{" "}
-                          <a style={{ color: "white" }} href="/gaming">
-                            Gaming
-                          </a>{" "}
+                          <a
+                            style={{ color: "white" }}
+                            // onClick={clickSubmit}
+                            href="/crypto-submit"
+                            rel="nofollow"
+                          >
+                            submit
+                          </a>
                         </span>
                       </td>
                       <td style={{ textAlign: "right", paddingRight: "4px" }}>
@@ -93,9 +90,7 @@ function CryptoUser() {
                             {/* Optional Login Info */}
                           </div>
 
-                          <a style={{ color: "white" }} href="/">
-                            TopTop |
-                          </a>
+                          
                           <HeaderMain></HeaderMain>
                         </span>
                       </td>
@@ -123,7 +118,7 @@ function CryptoUser() {
                 <table width="100%" cellSpacing="0" cellPadding="1">
                   <tbody>
                     <tr>
-                      <td style={{ backgroundColor: "#A9A9A9" }}></td>
+                      <td style={{ backgroundColor: "#053eff" }}></td>
                     </tr>
                   </tbody>
                 </table>

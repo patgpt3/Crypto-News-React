@@ -96,9 +96,7 @@ function CryptoNew() {
                           >
                             {username ? `${username} |` : 'login'}
                           </a> */}
-                          <a style={{ color: "white" }} href="./index.html">
-                            TopTop |
-                          </a>
+                        
                           <HeaderMain />
                         </span>
                       </td>

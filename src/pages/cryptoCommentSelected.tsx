@@ -111,9 +111,6 @@ function CryptoCommentSelected() {
                             {/* Optional Login Info */}
                           </div>
 
-                          <a style={{ color: "white" }} href="/">
-                            TopTop |
-                          </a>
                           <HeaderMain></HeaderMain>
                         </span>
                       </td>
@@ -192,10 +189,8 @@ function CryptoCommentSelected() {
                 <center style={{ fontSize: "8px" }}>
                   The MIT License (MIT)
                   <br />
-                  <br />
                   Copyright (c) 2024 Y Combinator Hacker News
-                  <br />
-                  <br />
+                  {/* <br />
                   Permission is hereby granted, free of charge, to any person
                   obtaining a copy of this software and associated documentation
                   files (the "Software"), to deal in the Software without
@@ -205,11 +200,9 @@ function CryptoCommentSelected() {
                   Software is furnished to do so, subject to the following
                   conditions:
                   <br />
-                  <br />
                   The above copyright notice and this permission notice shall be
                   included in all copies or substantial portions of the
                   Software.
-                  <br />
                   <br />
                   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
                   KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
@@ -218,8 +211,7 @@ function CryptoCommentSelected() {
                   COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
                   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
                   OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-                  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-                  <br />
+                  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */}
                   <br />
                 </center>
               </td>
