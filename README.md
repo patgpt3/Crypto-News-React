@@ -1,3 +1,9 @@
+# Crypto News
+
+Forum website in the style of Y Combinator's Hacker News focused on cryptocurrency and web3/blockchain technology. Users login with ETH wallet to post and comment on news stories. 
+
+hosted link - https://main.d3pxlmup85yuv5.amplifyapp.com/
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -48,4 +54,4 @@ export default tseslint.config({
   },
 })
 ```
-# toptop-react-test
+
