@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import MainCrypto from "./pages/MainCrypto";
 import CommentsCrypto from "./pages/CommentsCrypto";
 import CryptoNew from "./pages/cryptoNew";
-import TopTopNetwork from "./pages/TopTopNetwork";
+// import TopTopNetwork from "./pages/TopTopNetwork";
 import CryptoAsk from "./pages/cryptoAsk";
 import CryptoShow from "./pages/cryptoShow";
 // import CryptoJobs from "./pages/cryptoJobs";
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<TopTopNetwork />} />
+      <Route path="/" element={<MainCrypto />} />
       {/* crypto */}
       <Route path="/crypto" element={<MainCrypto />} />
       <Route path="/crypto-new" element={<CryptoNew />} />
