@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
+import IndexSelectedUser from "../components/crypto/userContent";
 
 function CryptoUser() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -42,7 +43,7 @@ function CryptoUser() {
                   <tbody>
                     <tr>
                       <td style={{ lineHeight: "12pt", height: "18px" }}>
-                      <span className="pagetop" style={{ color: "white" }}>
+                        <span className="pagetop" style={{ color: "white" }}>
                           <b className="hnname" style={{ color: "white" }}>
                             <a
                               style={{ color: "white", marginLeft: "3px" }}
@@ -90,7 +91,6 @@ function CryptoUser() {
                             {/* Optional Login Info */}
                           </div>
 
-                          
                           <HeaderMain></HeaderMain>
                         </span>
                       </td>
@@ -105,9 +105,14 @@ function CryptoUser() {
                 <table cellPadding="0" cellSpacing="0">
                   <tbody>
                     <div
-                      id="container"
-                      style={{ paddingLeft: "8px", paddingRight: "8px" }}
-                    ></div>
+                      style={{
+                        paddingLeft: "20px",
+                        paddingRight: "20px",
+                        paddingTop: "20px",
+                      }}
+                    >
+                      <IndexSelectedUser></IndexSelectedUser>
+                    </div>
                   </tbody>
                 </table>
               </td>
