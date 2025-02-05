@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { usePopup } from "../../assets/providers/popupContext";
 
 const SelectedItem = localStorage.getItem("selectedItem");
 const API_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/${SelectedItem}`;
@@ -174,17 +175,20 @@ const CryptoSelectedItem: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [users, setUsers] = useState<Item | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const { setItemComments } = usePopup();
 
   useEffect(() => {
     const loadData = async () => {
       const usersData = await fetchData();
       await fetchCurrentUser1();
       setUsers(usersData || []);
+      setItemComments(usersData?.comments);
     };
     loadData();
   }, [currentPage]);
   useEffect(() => {
     fetchCurrentUser1();
+
   }, [users]);
 
   const handleVote = async (id: string, isUpvote: boolean) => {

@@ -6,6 +6,8 @@ interface PopupContextType {
   setPopupOpen: (isOpen: boolean) => void;
   usernameInput: string;
   setUsernameInput: (usernameInput: string) => void;
+  itemComments: string[] | undefined;
+  setItemComments: (itemComments: string[] | undefined) => void;
   togglePopup: () => void;
 }
 
@@ -20,6 +22,7 @@ interface PopupProviderProps {
 export const PopupProvider: React.FC<PopupProviderProps> = ({ children }) => {
   const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
   const [usernameInput, setUsernameInput] = useState<string>("");
+  const [itemComments, setItemComments] = useState<string[] | undefined>([]);
 
   const togglePopup = () => setPopupOpen((prev) => !prev);
 
@@ -30,6 +33,8 @@ export const PopupProvider: React.FC<PopupProviderProps> = ({ children }) => {
         setPopupOpen,
         usernameInput,
         setUsernameInput,
+        itemComments,
+        setItemComments,
         togglePopup,
       }}
     >

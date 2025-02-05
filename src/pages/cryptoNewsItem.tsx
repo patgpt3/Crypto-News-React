@@ -5,6 +5,7 @@ import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
 import { usePrivy } from "@privy-io/react-auth";
 import CryptoSelectedItem from "../components/crypto/cryptoSelectedItem";
+import SelectedItemComments from "../components/crypto/cryptoSelectedItemComments";
 // Extend the global Window interface
 declare global {
   interface Window {
@@ -157,10 +158,9 @@ function CryptoNewsItem() {
                         <br />
                         <table border={0} className="comment-tree">
                           <tbody>
-                            <div
-                              id="commentsIndex"
-                              style={{ marginLeft: "3vw" }}
-                            ></div>
+                            <div style={{ marginLeft: "40px" }}>
+                              <SelectedItemComments />
+                            </div>
                           </tbody>
                         </table>
                         <br />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RenderReplies from "./renderReplies";
 import { usePrivy } from "@privy-io/react-auth";
+import { usePopup } from "../../assets/providers/popupContext";
 
 interface ItemSingle {
   _id: string;
@@ -26,20 +27,21 @@ interface UserProtectedData {
   upvotedSubmissions: string[];
   // Add other fields as needed based on the API response
 }
-const ItemSinglePage: React.FC = () => {
+const SelectedItemComments: React.FC = () => {
   const [comments, setComments] = useState<ItemSingle[]>([]);
   const [pageNumber, setPageNumber] = useState(0);
   const { login } = usePrivy();
-  const fetchComments = async (pageNum: number) => {
+  const { itemComments } = usePopup();
+  const fetchComments = async (itemComments: string[] | undefined) => {
     try {
       const response = await fetch(
-        "https://crypto-api-3-6bf97d4979d1.herokuapp.com/comments/comments/newest/pages",
+        "https://crypto-api-3-6bf97d4979d1.herokuapp.com/comments/comments/findbyIds",
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ pageNumber: pageNum }),
+          body: JSON.stringify({ comments: itemComments }),
         }
       );
       if (!response.ok) throw new Error(`Error: ${response.status}`);
@@ -160,7 +162,7 @@ const ItemSinglePage: React.FC = () => {
         }),
       });
       if (response.ok) {
-        const updatedComments = await fetchComments(pageNumber);
+        const updatedComments = await fetchComments(itemComments);
         setComments(updatedComments || []);
       }
     } catch (error) {
@@ -285,12 +287,13 @@ const ItemSinglePage: React.FC = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const usersData = await fetchComments(pageNumber);
+      console.log("itemComments", itemComments);
+      const usersData = await fetchComments(itemComments);
       await fetchCurrentUser1();
       setComments(usersData || []);
     };
     loadData();
-  }, [pageNumber]);
+  }, [pageNumber, itemComments]);
   useEffect(() => {
     fetchCurrentUser1();
   }, [comments]);
@@ -321,106 +324,120 @@ const ItemSinglePage: React.FC = () => {
     <div>
       {comments.map((comment) => (
         <div>
-          <td className="default">
-            <div style={{ marginTop: "2px", marginBottom: "-10px" }}>
-              <span className="comhead">
-                <a id="up_41790045" className="clicky">
-                  <span
-                    style={{
-                      fontSize: "10px",
-                      marginRight: "4px",
-                      marginLeft: "4px",
-                    }}
-                  >
-                    <img
-                      style={{ cursor: "pointer", marginRight: "8px" }}
-                      id={`${comment._id}`}
-                      onClick={() => handleVoteComment(comment._id, true)}
-                      src="/Hacker News_files/tpp.png"
-                      height="18"
-                      className="cnCommentUpVote"
-                    />
-                  </span>
-                </a>
-                <a
-                  id={`${comment._id}*`}
-                  className="cnComment"
-                  style={{ cursor: "pointer" }}
-                >
-                  {comment ? comment?.author : ""}
-                </a>{" "}
-                <span
-                  className="age"
-                  title="2024-10-09T16:55:00.000000Z"
-                  style={{ pointerEvents: "none", cursor: "default" }}
-                >
-                  <a> | {timeSince(new Date(comment?.createdAt))}</a>
-                </span>{" "}
-                <span style={{ pointerEvents: "none", cursor: "default" }}>
-                  | {comment.points} points
-                </span>{" "}
-                <span id="unv_41790045"></span>
-                <span>
-                  <a
-                    className="cnContext"
-                    style={{ cursor: "pointer" }}
-                    id={`${comment?.item}%`}
-                  >
-                    | context
-                  </a>{" "}
-                </span>
-                <span id="unv_41790045"></span>
-                <a
-                  className="flags"
-                  style={{
-                    cursor: "pointer",
-                    visibility: currentCommentMap
-                      ? currentCommentMap === "null"
-                        ? "hidden"
-                        : "visible"
-                      : "hidden",
-                  }}
-                  id={`${comment._id}[`}
-                  onClick={() => handleDeleteComment(comment._id)}
-                >
-                  | {comment.author === currentCommentMap ? "delete?" : "flag?"}
-                </a>{" "}
-                <a
-                  style={{ visibility: "hidden", cursor: "pointer" }}
-                  id={`${comment._id}$`}
-                  className="cnCommentDownVote"
-                  onClick={() => handleVoteComment(comment._id, false)}
-                >
-                  | unvote
-                </a>
-              </span>
-            </div>
-            <br />
-            <div className="comment">
-              <a>
-                <div className="commtext c00" style={{ marginLeft: "40px" }}>
-                  {comment?.comment}
-                </div>
-              </a>
-              <div style={{ marginLeft: "40px" }}>
-                <p>
-                  <u>
+          {comment ? (
+            <div>
+              <td className="default">
+                <div style={{ marginTop: "2px", marginBottom: "-10px" }}>
+                  <span className="comhead">
+                    <a id="up_41790045" className="clicky">
+                      <span
+                        style={{
+                          fontSize: "10px",
+                          marginRight: "4px",
+                          marginLeft: "4px",
+                        }}
+                      >
+                        <img
+                          style={{ cursor: "pointer", marginRight: "8px" }}
+                          id={`${comment ? comment._id : ""}`}
+                          onClick={() =>
+                            handleVoteComment(comment ? comment._id : "", true)
+                          }
+                          src="/Hacker News_files/tpp.png"
+                          height="18"
+                          className="cnCommentUpVote"
+                        />
+                      </span>
+                    </a>
                     <a
-                      className="reply"
-                      id={`${comment._id}&`}
-                      rel="nofollow"
+                      id={`${comment ? comment._id : ""}*`}
+                      className="cnComment"
                       style={{ cursor: "pointer" }}
                     >
-                      reply
+                      {comment ? comment?.author : ""}
+                    </a>{" "}
+                    <span
+                      className="age"
+                      title="2024-10-09T16:55:00.000000Z"
+                      style={{ pointerEvents: "none", cursor: "default" }}
+                    >
+                      <a> | {timeSince(new Date(comment?.createdAt))}</a>
+                    </span>{" "}
+                    <span style={{ pointerEvents: "none", cursor: "default" }}>
+                      | {comment?.points} points
+                    </span>{" "}
+                    <span id="unv_41790045"></span>
+                    <span>
+                      <a
+                        className="cnContext"
+                        style={{ cursor: "pointer" }}
+                        id={`${comment?.item}%`}
+                      >
+                        | context
+                      </a>{" "}
+                    </span>
+                    <span id="unv_41790045"></span>
+                    <a
+                      className="flags"
+                      style={{
+                        cursor: "pointer",
+                        visibility: currentCommentMap
+                          ? currentCommentMap === "null"
+                            ? "hidden"
+                            : "visible"
+                          : "hidden",
+                      }}
+                      id={`${comment?._id}[`}
+                      onClick={() => handleDeleteComment(comment?._id)}
+                    >
+                      |{" "}
+                      {comment?.author === currentCommentMap
+                        ? "delete?"
+                        : "flag?"}
+                    </a>{" "}
+                    <a
+                      style={{ visibility: "hidden", cursor: "pointer" }}
+                      id={`${comment?._id}$`}
+                      className="cnCommentDownVote"
+                      onClick={() => handleVoteComment(comment?._id, false)}
+                    >
+                      | unvote
                     </a>
-                  </u>
-                </p>
+                  </span>
+                </div>
+                <br />
+                <div className="comment">
+                  <a>
+                    <div
+                      className="commtext c00"
+                      style={{ marginLeft: "40px" }}
+                    >
+                      {comment?.comment}
+                    </div>
+                  </a>
+                  <div style={{ marginLeft: "40px" }}>
+                    <p>
+                      <u>
+                        <a
+                          className="reply"
+                          id={`${comment?._id}&`}
+                          rel="nofollow"
+                          style={{ cursor: "pointer" }}
+                        >
+                          reply
+                        </a>
+                      </u>
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <div style={{ marginLeft: "40px", marginTop: "20px" }}>
+                <RenderReplies replies={comment?.replies} />
               </div>
             </div>
-          </td>
-          <div style={{ marginLeft: "40px", marginTop: "20px" }}>
-            <RenderReplies replies={comment.replies} />
-          </div>
+          ) : (
+            <></>
+          )}
         </div>
       ))}
 
@@ -448,7 +465,7 @@ const ItemSinglePage: React.FC = () => {
             Back
           </div>
         )}
-        {comments.length < 30 ? (
+        {comments?.length < 30 ? (
           <></>
         ) : (
           <div
@@ -469,4 +486,4 @@ const ItemSinglePage: React.FC = () => {
   );
 };
 
-export default ItemSinglePage;
+export default SelectedItemComments;
