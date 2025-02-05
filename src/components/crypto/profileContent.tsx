@@ -85,11 +85,11 @@ const IndexCurrentUser: React.FC = () => {
     }
   };
 
-  const navigateTo = (path: string, data: unknown) => {
-    localStorage.setItem("SelectedItems", JSON.stringify(data));
-    localStorage.setItem("SelectedUser", SelectedUser || "");
-    window.location.href = path;
-  };
+  // const navigateTo = (path: string, data: unknown) => {
+  //   localStorage.setItem("SelectedItems", JSON.stringify(data));
+  //   localStorage.setItem("SelectedUser", SelectedUser || "");
+  //   window.location.href = path;
+  // };
 
   if (!user) return <div>Loading...</div>;
 
@@ -184,7 +184,7 @@ const IndexCurrentUser: React.FC = () => {
       </div>
       <br />
       <br />
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      {/* <div style={{ display: "flex", flexDirection: "column" }}>
         <div
           style={{ marginBottom: "4px" }}
           onClick={() => navigateTo("/user-submissions", user.submissions)}
@@ -209,7 +209,7 @@ const IndexCurrentUser: React.FC = () => {
         <div onClick={() => navigateTo("/crypto-profile-jobs", user.jobs)}>
           <u>Job Listings</u>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

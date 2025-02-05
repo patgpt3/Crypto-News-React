@@ -35,11 +35,11 @@ const IndexSelectedUser: React.FC = () => {
     fetchData();
   }, []);
 
-  const navigateTo = (path: string, data: unknown) => {
-    localStorage.setItem("SelectedItems", JSON.stringify(data));
-    localStorage.setItem("SelectedUser", SelectedUser || "");
-    window.location.href = path;
-  };
+  // const navigateTo = (path: string, data: unknown) => {
+  //   localStorage.setItem("SelectedItems", JSON.stringify(data));
+  //   localStorage.setItem("SelectedUser", SelectedUser || "");
+  //   window.location.href = path;
+  // };
 
   if (!user) return <div>Loading...</div>;
 
@@ -56,7 +56,7 @@ const IndexSelectedUser: React.FC = () => {
       <br />
 
       <br />
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      {/* <div style={{ display: "flex", flexDirection: "column" }}>
         <div
           style={{ marginBottom: "4px" }}
           onClick={() => navigateTo("/user-submissions", user.submissions)}
@@ -78,7 +78,7 @@ const IndexSelectedUser: React.FC = () => {
           <u>Votes</u>
         </div>
         <br />
-      </div>
+      </div> */}
     </div>
   );
 };

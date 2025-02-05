@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
 import { usePrivy } from "@privy-io/react-auth";
+import CryptoSelectedItem from "../components/crypto/cryptoSelectedItem";
 // Extend the global Window interface
 declare global {
   interface Window {
@@ -63,7 +64,7 @@ function CryptoNewsItem() {
                   <tbody>
                     <tr>
                       <td style={{ lineHeight: "12pt", height: "18px" }}>
-                      <span className="pagetop" style={{ color: "white" }}>
+                        <span className="pagetop" style={{ color: "white" }}>
                           <b className="hnname" style={{ color: "white" }}>
                             <a
                               style={{ color: "white", marginLeft: "3px" }}
@@ -111,7 +112,6 @@ function CryptoNewsItem() {
                             {/* Optional Login Info */}
                           </div>
 
-                  
                           <HeaderMain></HeaderMain>
                         </span>
                       </td>
@@ -134,7 +134,7 @@ function CryptoNewsItem() {
                       <td>
                         <table className="fatitem" border={0}>
                           <tbody>
-                            <div id="container111"></div>
+                            <CryptoSelectedItem />
                             <tr>
                               <td>
                                 <textarea
