@@ -12,7 +12,7 @@ import CryptoShow from "./pages/cryptoShow";
 import CryptoSubmit from "./pages/cryptoSubmit";
 import CryptoProfile from "./pages/cryptoProfile";
 import CryptoUser from "./pages/cryptoUser";
-import CryptoNewsItem from "./pages/cryptoNewsItem";
+// import CryptoNewsItem from "./pages/cryptoNewsItem";
 import CryptoCommentSelected from "./pages/cryptoCommentSelected";
 import CryptoReplySelected from "./pages/cryptoReplySelected";
 import CryptoJobSelected from "./pages/cryptoJobSelected";
@@ -21,6 +21,56 @@ import CryptoUserComments from "./pages/cryptoUserComments";
 import CryptoUserVotes from "./pages/cryptoUserVotes";
 import CryptoProfileJobs from "./pages/cryptoProfileJobs";
 import CryptoJobs from "./pages/cryptoJobs";
+import MainAI from "./pages/MainAI";
+import TopTopNetwork from "./pages/TopTopNetwork";
+import MainMemecoin from "./pages/MainMemecoin";
+import MainDePIN from "./pages/MainDePIN";
+import MainNFT from "./pages/MainNFT";
+import MainDeSci from "./pages/MainDeSci";
+import MainFilm from "./pages/MainFilm";
+import MainGaming from "./pages/MainGaming";
+import CommentsAI from "./pages/CommentsAI";
+import CommentsMemecoins from "./pages/CommentsMemecoins";
+import CommentsDePIN from "./pages/CommentsDePIN";
+import CommentsNFT from "./pages/CommentsNFT";
+import CommentsDeSci from "./pages/CommentsDeSci";
+import CommentsFilm from "./pages/CommentsFilm";
+import CommentsGaming from "./pages/CommentsGaming";
+import AINew from "./pages/aiNew";
+import NFTSubmit from "./pages/nftSubmit";
+import AISubmit from "./pages/aiSubmit";
+import MemecoinsSubmit from "./pages/memecoinsSubmit";
+import DePINSubmit from "./pages/depinSubmit";
+import DeSciSubmit from "./pages/desciSubmit";
+import GamingSubmit from "./pages/gamingSubmit";
+import FilmSubmit from "./pages/filmSubmit";
+import MemecoinsNew from "./pages/memecoinsNew";
+import AIAsk from "./pages/aiAsk";
+import AIShow from "./pages/aiShow";
+import AIJobs from "./pages/aiJobs";
+import MemecoinsAsk from "./pages/memecoinsAsk";
+import MemecoinsShow from "./pages/memecoinsShow";
+import MemecoinsJobs from "./pages/memecoinsJobs";
+import DePINNew from "./pages/depinNew";
+import DePINAsk from "./pages/depinAsk";
+import DePINShow from "./pages/depinShow";
+import DePINJobs from "./pages/depinJobs";
+import NFTNew from "./pages/nftNew";
+import NFTAsk from "./pages/nftAsk";
+import NFTShow from "./pages/nftShow";
+import NFTJobs from "./pages/nftJobs";
+import DeSciNew from "./pages/desciNew";
+import DeSciAsk from "./pages/desciAsk";
+import DeSciShow from "./pages/desciShow";
+import DeSciJobs from "./pages/desciJobs";
+import FilmNew from "./pages/filmNew";
+import FilmAsk from "./pages/filmAsk";
+import FilmShow from "./pages/filmShow";
+import FilmJobs from "./pages/filmJobs";
+import GamingNew from "./pages/gamingNew";
+import GamingAsk from "./pages/gamingAsk";
+import GamingShow from "./pages/gamingShow";
+import GamingJobs from "./pages/gamingJobs";
 
 function App() {
   // const { login, logout, authenticated } = usePrivy();
@@ -31,45 +81,42 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<MainCrypto />} />
+      <Route path="/" element={<TopTopNetwork />} />
       {/* crypto */}
       <Route path="/crypto" element={<MainCrypto />} />
       <Route path="/crypto-new" element={<CryptoNew />} />
       <Route path="/crypto-comments" element={<CommentsCrypto />} />
       <Route path="/crypto-ask" element={<CryptoAsk />} />
       <Route path="/crypto-show" element={<CryptoShow />} />
-      <Route path="/crypto-jobs" element={<CryptoJobs />} />
+      <Route path="/crypto/jobs" element={<CryptoJobs />} />
       <Route path="/crypto-submit" element={<CryptoSubmit />} />
 
       <Route path="/profile" element={<CryptoProfile />} />
       <Route path="/crypto-profile-jobs" element={<CryptoProfileJobs />} />
 
       <Route
-        path="/crypto-comments-selected"
+        path="/crypto-comments-selected/:id"
         element={<CryptoCommentSelected />}
       />
       <Route path="/crypto-comments-reply" element={<CryptoReplySelected />} />
 
-      <Route path="/crypto-item" element={<CryptoNewsItem />} />
+      <Route path="/crypto-item/:id" element={<MainCrypto />} />
 
-      <Route path="/crypto-jobs-selected" element={<CryptoJobSelected />} />
+      <Route path="/crypto/jobs-selected" element={<CryptoJobSelected />} />
 
-      <Route path="/user" element={<CryptoUser />} />
+      <Route path="/user/:id" element={<CryptoUser />} />
       <Route path="/user-comments" element={<CryptoUserComments />} />
       <Route path="/user-submissions" element={<CryptoUserSubmissions />} />
       <Route path="/user-votes" element={<CryptoUserVotes />} />
 
       {/* ai */}
-      <Route path="/ai" element={<MainCrypto />} />
-      <Route path="/ai/new" element={<CommentsCrypto />} />
-      <Route path="/ai/comments" element={<CommentsCrypto />} />
-      <Route path="/ai/ask" element={<CommentsCrypto />} />
-      <Route path="/ai/show" element={<CommentsCrypto />} />
-      <Route path="/ai/jobs" element={<CommentsCrypto />} />
-      <Route path="/ai/submit" element={<CommentsCrypto />} />
-
-      <Route path="/ai/profile" element={<CommentsCrypto />} />
-      <Route path="/ai/profile/jobs" element={<CommentsCrypto />} />
+      <Route path="/ai" element={<MainAI />} />
+      <Route path="/ai/new" element={<AINew />} />
+      <Route path="/ai/comments" element={<CommentsAI />} />
+      <Route path="/ai/ask" element={<AIAsk />} />
+      <Route path="/ai/show" element={<AIShow />} />
+      <Route path="/ai/jobs" element={<AIJobs />} />
+      <Route path="/ai/submit" element={<AISubmit />} />
 
       <Route path="/ai/comments/selected" element={<CommentsCrypto />} />
       <Route path="/ai/comments/reply" element={<CommentsCrypto />} />
@@ -78,22 +125,15 @@ function App() {
 
       <Route path="/ai/jobs/selected" element={<CommentsCrypto />} />
 
-      <Route path="/ai/user" element={<CommentsCrypto />} />
-      <Route path="/ai/user/comments" element={<CommentsCrypto />} />
-      <Route path="/ai/user/submissions" element={<CommentsCrypto />} />
-      <Route path="/ai/user/votes" element={<CommentsCrypto />} />
-
+  
       {/* memecoins */}
-      <Route path="/memecoins" element={<MainCrypto />} />
-      <Route path="/memecoins/new" element={<CommentsCrypto />} />
-      <Route path="/memecoins/comments" element={<CommentsCrypto />} />
-      <Route path="/memecoins/ask" element={<CommentsCrypto />} />
-      <Route path="/memecoins/show" element={<CommentsCrypto />} />
-      <Route path="/memecoins/jobs" element={<CommentsCrypto />} />
-      <Route path="/memecoins/submit" element={<CommentsCrypto />} />
-
-      <Route path="/memecoins/profile" element={<CommentsCrypto />} />
-      <Route path="/memecoins/profile/jobs" element={<CommentsCrypto />} />
+      <Route path="/memecoins" element={<MainMemecoin />} />
+      <Route path="/memecoins/new" element={<MemecoinsNew />} />
+      <Route path="/memecoins/comments" element={<CommentsMemecoins />} />
+      <Route path="/memecoins/ask" element={<MemecoinsAsk />} />
+      <Route path="/memecoins/show" element={<MemecoinsShow />} />
+      <Route path="/memecoins/jobs" element={<MemecoinsJobs />} />
+      <Route path="/memecoins/submit" element={<MemecoinsSubmit />} />
 
       <Route path="/memecoins/comments/selected" element={<CommentsCrypto />} />
       <Route path="/memecoins/comments/reply" element={<CommentsCrypto />} />
@@ -102,22 +142,15 @@ function App() {
 
       <Route path="/memecoins/jobs/selected" element={<CommentsCrypto />} />
 
-      <Route path="/memecoins/user" element={<CommentsCrypto />} />
-      <Route path="/memecoins/user/comments" element={<CommentsCrypto />} />
-      <Route path="/memecoins/user/submissions" element={<CommentsCrypto />} />
-      <Route path="/memecoins/user/votes" element={<CommentsCrypto />} />
-
+ 
       {/* dePIN */}
-      <Route path="/depin" element={<MainCrypto />} />
-      <Route path="/depin/new" element={<CommentsCrypto />} />
-      <Route path="/depin/comments" element={<CommentsCrypto />} />
-      <Route path="/depin/ask" element={<CommentsCrypto />} />
-      <Route path="/depin/show" element={<CommentsCrypto />} />
-      <Route path="/depin/jobs" element={<CommentsCrypto />} />
-      <Route path="/depin/submit" element={<CommentsCrypto />} />
-
-      <Route path="/depin/profile" element={<CommentsCrypto />} />
-      <Route path="/depin/profile/jobs" element={<CommentsCrypto />} />
+      <Route path="/depin" element={<MainDePIN />} />
+      <Route path="/depin/new" element={<DePINNew />} />
+      <Route path="/depin/comments" element={<CommentsDePIN />} />
+      <Route path="/depin/ask" element={<DePINAsk />} />
+      <Route path="/depin/show" element={<DePINShow />} />
+      <Route path="/depin/jobs" element={<DePINJobs />} />
+      <Route path="/depin/submit" element={<DePINSubmit />} />
 
       <Route path="/depin/comments/selected" element={<CommentsCrypto />} />
       <Route path="/depin/comments/reply" element={<CommentsCrypto />} />
@@ -126,19 +159,16 @@ function App() {
 
       <Route path="/depin/jobs/selected" element={<CommentsCrypto />} />
 
-      <Route path="/depin/user" element={<CommentsCrypto />} />
-      <Route path="/depin/user/comments" element={<CommentsCrypto />} />
-      <Route path="/depin/user/submissions" element={<CommentsCrypto />} />
-      <Route path="/depin/user/votes" element={<CommentsCrypto />} />
+
 
       {/* NFT */}
-      <Route path="/nft" element={<MainCrypto />} />
-      <Route path="/nft/new" element={<CommentsCrypto />} />
-      <Route path="/nft/comments" element={<CommentsCrypto />} />
-      <Route path="/nft/ask" element={<CommentsCrypto />} />
-      <Route path="/nft/show" element={<CommentsCrypto />} />
-      <Route path="/nft/jobs" element={<CommentsCrypto />} />
-      <Route path="/nft/submit" element={<CommentsCrypto />} />
+      <Route path="/nft" element={<MainNFT />} />
+      <Route path="/nft/new" element={<NFTNew />} />
+      <Route path="/nft/comments" element={<CommentsNFT />} />
+      <Route path="/nft/ask" element={<NFTAsk />} />
+      <Route path="/nft/show" element={<NFTShow />} />
+      <Route path="/nft/jobs" element={<NFTJobs />} />
+      <Route path="/nft/submit" element={<NFTSubmit />} />
 
       <Route path="/nft/profile" element={<CommentsCrypto />} />
       <Route path="/nft/profile/jobs" element={<CommentsCrypto />} />
@@ -156,16 +186,13 @@ function App() {
       <Route path="/nft/user/votes" element={<CryptoUserVotes />} />
 
       {/* DeSci */}
-      <Route path="/desci" element={<MainCrypto />} />
-      <Route path="/desci/new" element={<CommentsCrypto />} />
-      <Route path="/desci/comments" element={<CommentsCrypto />} />
-      <Route path="/desci/ask" element={<CommentsCrypto />} />
-      <Route path="/desci/show" element={<CommentsCrypto />} />
-      <Route path="/desci/jobs" element={<CommentsCrypto />} />
-      <Route path="/desci/submit" element={<CommentsCrypto />} />
-
-      <Route path="/desci/profile" element={<CommentsCrypto />} />
-      <Route path="/desci/profile/jobs" element={<CommentsCrypto />} />
+      <Route path="/desci" element={<MainDeSci />} />
+      <Route path="/desci/new" element={<DeSciNew />} />
+      <Route path="/desci/comments" element={<CommentsDeSci />} />
+      <Route path="/desci/ask" element={<DeSciAsk />} />
+      <Route path="/desci/show" element={<DeSciShow />} />
+      <Route path="/desci/jobs" element={<DeSciJobs />} />
+      <Route path="/desci/submit" element={<DeSciSubmit />} />
 
       <Route path="/desci/comments/selected" element={<CommentsCrypto />} />
       <Route path="/desci/comments/reply" element={<CommentsCrypto />} />
@@ -174,22 +201,15 @@ function App() {
 
       <Route path="/desci/jobs/selected" element={<CommentsCrypto />} />
 
-      <Route path="/desci/user" element={<CommentsCrypto />} />
-      <Route path="/desci/user/comments" element={<CommentsCrypto />} />
-      <Route path="/desci/user/submissions" element={<CommentsCrypto />} />
-      <Route path="/desci/user/votes" element={<CommentsCrypto />} />
 
       {/* film */}
-      <Route path="/film" element={<MainCrypto />} />
-      <Route path="/film/new" element={<CommentsCrypto />} />
-      <Route path="/film/comments" element={<CommentsCrypto />} />
-      <Route path="/film/ask" element={<CommentsCrypto />} />
-      <Route path="/film/show" element={<CommentsCrypto />} />
-      <Route path="/film/jobs" element={<CommentsCrypto />} />
-      <Route path="/film/submit" element={<CommentsCrypto />} />
-
-      <Route path="/film/profile" element={<CommentsCrypto />} />
-      <Route path="/film/profile/jobs" element={<CommentsCrypto />} />
+      <Route path="/film" element={<MainFilm />} />
+      <Route path="/film/new" element={<FilmNew />} />
+      <Route path="/film/comments" element={<CommentsFilm />} />
+      <Route path="/film/ask" element={<FilmAsk />} />
+      <Route path="/film/show" element={<FilmShow />} />
+      <Route path="/film/jobs" element={<FilmJobs />} />
+      <Route path="/film/submit" element={<FilmSubmit />} />
 
       <Route path="/film/comments/selected" element={<CommentsCrypto />} />
       <Route path="/film/comments/reply" element={<CommentsCrypto />} />
@@ -198,19 +218,14 @@ function App() {
 
       <Route path="/film/jobs/selected" element={<CommentsCrypto />} />
 
-      <Route path="/film/user" element={<CommentsCrypto />} />
-      <Route path="/film/user/comments" element={<CommentsCrypto />} />
-      <Route path="/film/user/submissions" element={<CommentsCrypto />} />
-      <Route path="/film/user/votes" element={<CommentsCrypto />} />
-
       {/* gaming */}
-      <Route path="/gaming" element={<MainCrypto />} />
-      <Route path="/gaming/new" element={<CommentsCrypto />} />
-      <Route path="/gaming/comments" element={<CommentsCrypto />} />
-      <Route path="/gaming/ask" element={<CommentsCrypto />} />
-      <Route path="/gaming/show" element={<CommentsCrypto />} />
-      <Route path="/gaming/jobs" element={<CommentsCrypto />} />
-      <Route path="/gaming/submit" element={<CommentsCrypto />} />
+      <Route path="/gaming" element={<MainGaming />} />
+      <Route path="/gaming/new" element={<GamingNew />} />
+      <Route path="/gaming/comments" element={<CommentsGaming />} />
+      <Route path="/gaming/ask" element={<GamingAsk />} />
+      <Route path="/gaming/show" element={<GamingShow />} />
+      <Route path="/gaming/jobs" element={<GamingJobs />} />
+      <Route path="/gaming/submit" element={<GamingSubmit />} />
 
       <Route path="/gaming/profile" element={<CommentsCrypto />} />
       <Route path="/gaming/profile/jobs" element={<CommentsCrypto />} />

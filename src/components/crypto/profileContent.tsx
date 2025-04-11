@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 const SelectedUser = localStorage.getItem("username");
-const API_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/findProtected/${SelectedUser}`;
-const JOB_API_URL = "https://crypto-api-3-6bf97d4979d1.herokuapp.com/jobs";
+const API_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/users/findProtected/${SelectedUser}`;
+const JOB_API_URL = "https://toptop-api-facbf95cbd23.herokuapp.com/jobs";
 
 interface User {
   _id: string;
@@ -25,6 +25,7 @@ const IndexCurrentUser: React.FC = () => {
     title: "",
     url: "",
     body: "",
+    category: "",
   });
 
   useEffect(() => {
@@ -49,14 +50,11 @@ const IndexCurrentUser: React.FC = () => {
   const updateUserField = async (field: string, value: string) => {
     if (!user) return;
     try {
-      const response = await fetch(
-        `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/${user._id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ [field]: value }),
-        }
-      );
+      const response = await fetch(`https://toptop-api-facbf95cbd23.herokuapp.com/users/${user._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ [field]: value }),
+      });
       if (!response.ok) throw new Error(`Error: ${response.status}`);
       const updatedUser = await response.json();
       setUser(updatedUser);
@@ -79,7 +77,7 @@ const IndexCurrentUser: React.FC = () => {
         }),
       });
       if (!response.ok) throw new Error("Error posting job");
-      window.location.href = "/crypto-jobs";
+      window.location.href = `/${jobDetails.category}/jobs`;
     } catch (error) {
       console.error("Job posting error:", error);
     }
@@ -101,6 +99,7 @@ const IndexCurrentUser: React.FC = () => {
       </div>
       <div>
         <p>About:</p>
+        <p>{user.about ? user.about : ""}</p>
         <textarea
           value={aboutInput}
           onChange={(e) => setAboutInput(e.target.value)}
@@ -136,10 +135,34 @@ const IndexCurrentUser: React.FC = () => {
         </button>
       </div>
       <br />
-      <div style={{marginBottom:"10px"}}>
+      <div style={{ marginBottom: "10px" }}>
         <p>Post a Job:</p>
         <div>
-        <div >
+          <div>
+            <label>Category:</label>
+          </div>
+          <br />
+          <select
+            value={jobDetails.category || ""}
+            style={{ width: "-webkit-fill-available", marginBottom: "6px" }}
+            onChange={(e) =>
+              setJobDetails((prev) => ({ ...prev, category: e.target.value }))
+            }
+          >
+            <option value="">Select a job category</option>
+            <option value="Crypto">Crypto</option>
+            <option value="AI">AI</option>
+            <option value="Memecoins">Memecoins</option>
+            <option value="DePIN">DePIN</option>
+            <option value="NFT">NFT</option>
+            <option value="DeSci">DeSci</option>
+            <option value="Film">Film</option>
+            <option value="Gaming">Gaming</option>
+          </select>
+        </div>
+        <br />
+        <div>
+          <div>
             <label>Title:</label>
           </div>
           <br />
@@ -153,7 +176,7 @@ const IndexCurrentUser: React.FC = () => {
           />
         </div>
         <div>
-          <div style={{marginTop:"10px"}}>
+          <div style={{ marginTop: "10px" }}>
             <label>URL:</label>
           </div>
           <br />
@@ -167,7 +190,7 @@ const IndexCurrentUser: React.FC = () => {
           />
         </div>
         <div>
-        <div style={{marginTop:"10px"}}>
+          <div style={{ marginTop: "10px" }}>
             <label>Body:</label>
           </div>
           <br />

@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-const API_URL = "https://crypto-api-3-6bf97d4979d1.herokuapp.com/items";
+const API_URL = "https://toptop-api-facbf95cbd23.herokuapp.com/items";
 
 const fetchData = async (title: string, url: string, body: string) => {
   // const title = document.getElementById("title")?.value;
@@ -35,6 +35,7 @@ const fetchData = async (title: string, url: string, body: string) => {
         text: body || "",
         author: username,
         isFlagged: 0,
+        category: "Crypto"
       }),
     });
 
@@ -175,7 +176,7 @@ const CryptoSubmit = () => {
                             show
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto-jobs">
+                          <a style={{ color: "white" }} href="/crypto/jobs">
                             jobs
                           </a>{" "}
                           |{" "}

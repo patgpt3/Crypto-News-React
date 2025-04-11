@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const SelectedUser = localStorage.getItem("SelectedUser");
-const API_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/findProtected/${SelectedUser}`;
+// const SelectedUser = localStorage.getItem("SelectedUser");
 
 interface User {
   _id: string;
@@ -17,7 +17,9 @@ interface User {
 
 const IndexSelectedUser: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
-
+  const { id } = useParams<{ id: string }>();
+  
+  const API_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/users/findProtected/${id}`;
   // const [aboutInput, setAboutInput] = useState("");
 
   useEffect(() => {

@@ -84,7 +84,7 @@ function CryptoUserComments() {
                             show
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto-jobs">
+                          <a style={{ color: "white" }} href="/crypto/jobs">
                             jobs
                           </a>{" "}
                           |{" "}

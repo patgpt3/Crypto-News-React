@@ -16,10 +16,10 @@
 /* Popup card styling */
 .popup-card {
   background: white;
-  border-radius: 10px;
+  border-radius: 25px;
   width: 300px; /* Square dimensions */
   height: 300px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

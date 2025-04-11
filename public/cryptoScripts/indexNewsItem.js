@@ -1126,7 +1126,7 @@ async function postComment() {
   const Item = localStorage.getItem("selectedItem");
 
   const COMMENTS_URL =
-    "https://crypto-api-3-6bf97d4979d1.herokuapp.com/comments";
+    "https://toptop-api-facbf95cbd23.herokuapp.com/comments";
   try {
     const response = await fetch(COMMENTS_URL, {
       method: "POST",
@@ -1139,6 +1139,7 @@ async function postComment() {
         points: 0,
         author: username,
         isFlagged: 0,
+        category: "Crypto",
         replies: [],
       }),
     })
@@ -1151,7 +1152,7 @@ async function postComment() {
       .then((data) => {
         // Handle the API response data
         console.log(data);
-        window.location.href = "/crypto-item";
+        window.location.href = `/crypto-item/${Item}`;
       })
       .catch((error) => {
         // Handle errors

@@ -1,5 +1,5 @@
 // import "./App.css";
-import { usePrivy } from "@privy-io/react-auth";
+// import { usePrivy } from "@privy-io/react-auth";
 // import { useEffect } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
@@ -8,7 +8,7 @@ import CryptoItems from "../components/crypto/cryptoMainItems";
 // import { Helmet } from "react-helmet-async";
 
 function MainCrypto() {
-  const { login } = usePrivy();
+  // const { login, authenticated } = usePrivy();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   // useEffect(() => {
   //   // Dynamically load the script
@@ -25,16 +25,16 @@ function MainCrypto() {
   // }, []);
 
   // Add click listeners to .cnUser elements
-  const voteElements = document.querySelectorAll(".cnUpVote");
+  // const voteElements = document.querySelectorAll(".cnUpVote");
 
-  voteElements.forEach((voteElement) => {
-    voteElement.addEventListener("click", () => {
-      const username = localStorage.getItem("username");
-      if (!username || username === "null") {
-        login();
-      }
-    });
-  });
+  // voteElements.forEach((voteElement) => {
+  //   voteElement.addEventListener("click", () => {
+  //     // const username = localStorage.getItem("username");
+  //     if (!authenticated) {
+  //       login();
+  //     }
+  //   });
+  // });
 
   return (
     <div id="root">
@@ -89,7 +89,7 @@ function MainCrypto() {
                             show
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto-jobs">
+                          <a style={{ color: "white" }} href="/crypto/jobs">
                             jobs
                           </a>{" "}
                           |{" "}

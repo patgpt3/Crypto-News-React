@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 
 // Helper functions for fetching data
 const API_URL =
-  "https://crypto-api-3-6bf97d4979d1.herokuapp.com/jobs/jobs/newest/pages";
+  "https://toptop-api-facbf95cbd23.herokuapp.com/jobs/jobs/newest/pages/cat";
 
 const fetchData = async (pageNum: number) => {
   try {
     const response = await fetch(API_URL, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ pageNumber: pageNum || 0 }),
+      body: JSON.stringify({ pageNumber: pageNum || 0, cat: "Crypto" }),
     });
 
     if (!response.ok) throw new Error(`Error: ${response.status}`);
@@ -21,7 +21,7 @@ const fetchData = async (pageNum: number) => {
 };
 
 const deleteItem = async (id: string) => {
-  const UPVOTE_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/jobs/${id}`;
+  const UPVOTE_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/jobs/${id}`;
   try {
     const response = await fetch(UPVOTE_URL, {
       method: "DELETE",
@@ -74,7 +74,7 @@ async function fetchCurrentUser1(): Promise<UserProtectedData | void> {
     return;
   }
 
-  const USER_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/findProtected/${username}`;
+  const USER_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/users/findProtected/${username}`;
 
   try {
     const response = await fetch(USER_URL, {

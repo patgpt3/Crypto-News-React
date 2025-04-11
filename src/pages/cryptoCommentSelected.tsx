@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
 import { usePrivy } from "@privy-io/react-auth";
+// import { useParams } from "react-router-dom";
 
 // Extend the global Window interface
 declare global {
@@ -14,6 +15,7 @@ declare global {
 
 function CryptoCommentSelected() {
   const { login } = usePrivy();
+  // const { id } = useParams<{ id: string }>();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     // Dynamically load the script
@@ -88,7 +90,7 @@ function CryptoCommentSelected() {
                             show
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto-jobs">
+                          <a style={{ color: "white" }} href="/crypto/jobs">
                             jobs
                           </a>{" "}
                           |{" "}

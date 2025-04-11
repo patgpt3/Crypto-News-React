@@ -65,7 +65,7 @@ function HeaderMain() {
       if (user) {
         try {
           const response = await fetch(
-            `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/find/privy/${user?.id}`
+            `https://toptop-api-facbf95cbd23.herokuapp.com/users/find/privy/${user?.id}`
           );
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -94,6 +94,9 @@ function HeaderMain() {
   return (
     <>
       {isPopupOpen && <Popup />}{" "}
+      <a style={{ color: "white" }} href="/">
+        TopTop |
+      </a>{" "}
       {authenticated && user ? (
         <a style={{ color: "white" }} href="/profile">
           {username || user?.wallet?.address} |
@@ -102,11 +105,11 @@ function HeaderMain() {
         ""
       )}{" "}
       {authenticated ? (
-        <a style={{ color: "white" }} onClick={handleLogout}>
+        <a style={{ color: "white", cursor: "pointer" }} onClick={handleLogout}>
           logout
         </a>
       ) : (
-        <a style={{ color: "white" }} onClick={login}>
+        <a style={{ color: "white", cursor: "pointer" }} onClick={login}>
           login
         </a>
       )}

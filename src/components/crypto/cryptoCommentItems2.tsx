@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import RenderReplies from "./renderReplies";
+import RenderReplies from "../film/renderReplies";
 import { usePrivy } from "@privy-io/react-auth";
 
 interface Comment {
@@ -33,13 +33,13 @@ const CommentsPage: React.FC = () => {
   const fetchComments = async (pageNum: number) => {
     try {
       const response = await fetch(
-        "https://crypto-api-3-6bf97d4979d1.herokuapp.com/comments/comments/newest/pages",
+        "https://toptop-api-facbf95cbd23.herokuapp.com/comments/comments/newest/pages/cat",
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ pageNumber: pageNum }),
+          body: JSON.stringify({ pageNumber: pageNum || 0, cat: "Crypto" }),
         }
       );
       if (!response.ok) throw new Error(`Error: ${response.status}`);
@@ -59,7 +59,7 @@ const CommentsPage: React.FC = () => {
       return;
     }
 
-    const USER_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/findProtected/${username}`;
+    const USER_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/users/findProtected/${username}`;
 
     try {
       const response = await fetch(USER_URL, {
@@ -130,13 +130,13 @@ const CommentsPage: React.FC = () => {
     commentElement.addEventListener("click", () => {
       const itemId = commentElement.id.replace("%", "");
       localStorage.setItem("selectedItem", itemId);
-      window.location.href = "/crypto-item";
+      window.location.href = `/crypto-item/${itemId}`;
     });
   });
   const handleDeleteComment = async (id: string) => {
     try {
       const response = await fetch(
-        `https://crypto-api-3-6bf97d4979d1.herokuapp.com/comments/${id}`,
+        `https://toptop-api-facbf95cbd23.herokuapp.com/comments/${id}`,
         { method: "DELETE", headers: { "Content-Type": "application/json" } }
       );
       if (response.ok) {
@@ -148,7 +148,7 @@ const CommentsPage: React.FC = () => {
   };
 
   const handleVoteComment = async (id: string, isUpvote: boolean) => {
-    const url = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/comments/${
+    const url = `https://toptop-api-facbf95cbd23.herokuapp.com/comments/${
       isUpvote ? "upVote" : "downVote"
     }/${id}`;
     try {
@@ -179,7 +179,7 @@ const CommentsPage: React.FC = () => {
   });
 
   // const fetchReplies = async (replyIds: Reply[]) => {
-  //   const USER_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/replies/replies/findbyIds`;
+  //   const USER_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/replies/replies/findbyIds`;
 
   //   try {
   //     const response = await fetch(USER_URL, {

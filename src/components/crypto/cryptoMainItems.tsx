@@ -1,15 +1,15 @@
+import { usePrivy } from "@privy-io/react-auth";
 import React, { useEffect, useState } from "react";
 
 // Helper functions for fetching data
-const API_URL =
-  "https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/main/pages";
+const API_URL = "https://toptop-api-facbf95cbd23.herokuapp.com/items/main/pages/cat";
 
 const fetchData = async (pageNum: number) => {
   try {
     const response = await fetch(API_URL, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ pageNumber: pageNum || 0 }),
+      body: JSON.stringify({ pageNumber: pageNum || 0, cat: "Crypto" }),
     });
 
     if (!response.ok) throw new Error(`Error: ${response.status}`);
@@ -21,7 +21,7 @@ const fetchData = async (pageNum: number) => {
 };
 
 const deleteItem = async (id: string) => {
-  const UPVOTE_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/${id}`;
+  const UPVOTE_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/items/${id}`;
   try {
     const response = await fetch(UPVOTE_URL, {
       method: "DELETE",
@@ -36,7 +36,7 @@ const deleteItem = async (id: string) => {
 
 const UpVote = async (id: string) => {
   const username = localStorage.getItem("username");
-  const UPVOTE_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/upVote/${id}`;
+  const UPVOTE_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/items/upVote/${id}`;
 
   try {
     const response = await fetch(UPVOTE_URL, {
@@ -53,7 +53,7 @@ const UpVote = async (id: string) => {
 
 const DownVote = async (id: string) => {
   const username = localStorage.getItem("username");
-  const UPVOTE_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/downVote/${id}`;
+  const UPVOTE_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/items/downVote/${id}`;
 
   try {
     const response = await fetch(UPVOTE_URL, {
@@ -101,70 +101,71 @@ interface UserProtectedData {
   // Add other fields as needed based on the API response
 }
 
-async function fetchCurrentUser1(): Promise<UserProtectedData | void> {
-  const username = localStorage.getItem("username");
-  if (!username) {
-    console.error("No username found in localStorage.");
-    return;
-  }
-
-  const USER_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/findProtected/${username}`;
-
-  try {
-    const response = await fetch(USER_URL, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
-    }
-
-    const data: UserProtectedData = await response.json();
-
-    // Hide vote elements that the user has already voted on
-    const voteElements = document.querySelectorAll<HTMLElement>(".cnUpVote");
-    voteElements.forEach((voteElement) => {
-      if (data.upvotedSubmissions.includes(voteElement.id)) {
-        voteElement.style.visibility = "hidden";
-
-        const unvoteElement = document.getElementById(`${voteElement.id}$`);
-        if (unvoteElement) {
-          unvoteElement.style.visibility = "visible";
-        }
-      }
-    });
-
-    const unvoteElements =
-      document.querySelectorAll<HTMLElement>(".cnDownVote");
-
-    unvoteElements.forEach((unvoteElement) => {
-      unvoteElement.addEventListener("click", () => {
-        const itemId = unvoteElement.id.replace("$", "");
-
-        unvoteElement.style.visibility = "hidden";
-
-        const upVoteElement = document.getElementById(itemId);
-
-        if (upVoteElement) {
-          upVoteElement.style.visibility = "visible";
-        }
-      });
-    });
-
-    return data;
-  } catch (error) {
-    console.error("Fetch error:", error);
-  }
-}
-
 // React component
 const CryptoItems: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [users, setUsers] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const { login, authenticated } = usePrivy();
+  async function fetchCurrentUser1(): Promise<UserProtectedData | void> {
+    const username = localStorage.getItem("username");
+    if (!username) {
+      console.error("No username found in localStorage.");
+      return;
+    }
+
+    const USER_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/users/findProtected/${username}`;
+
+    try {
+      const response = await fetch(USER_URL, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      if (authenticated) {
+        const data: UserProtectedData = await response.json();
+
+        // Hide vote elements that the user has already voted on
+        const voteElements =
+          document.querySelectorAll<HTMLElement>(".cnUpVote");
+        voteElements.forEach((voteElement) => {
+          if (data.upvotedSubmissions.includes(voteElement.id)) {
+            voteElement.style.visibility = "hidden";
+
+            const unvoteElement = document.getElementById(`${voteElement.id}$`);
+            if (unvoteElement) {
+              unvoteElement.style.visibility = "visible";
+            }
+          }
+        });
+
+        const unvoteElements =
+          document.querySelectorAll<HTMLElement>(".cnDownVote");
+
+        unvoteElements.forEach((unvoteElement) => {
+          unvoteElement.addEventListener("click", () => {
+            const itemId = unvoteElement.id.replace("$", "");
+
+            unvoteElement.style.visibility = "hidden";
+
+            const upVoteElement = document.getElementById(itemId);
+
+            if (upVoteElement) {
+              upVoteElement.style.visibility = "visible";
+            }
+          });
+        });
+        return data;
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  }
 
   useEffect(() => {
     const loadData = async () => {
@@ -176,14 +177,19 @@ const CryptoItems: React.FC = () => {
   }, [currentPage]);
   useEffect(() => {
     fetchCurrentUser1();
-  }, [users]);
+  }, [users, authenticated]);
 
   const handleVote = async (id: string, isUpvote: boolean) => {
-    if (isUpvote) {
-      await UpVote(id);
+    if (!authenticated) {
+      login();
     } else {
-      await DownVote(id);
+      if (isUpvote) {
+        await UpVote(id);
+      } else {
+        await DownVote(id);
+      }
     }
+
     // Update users data after vote
     const updatedUsers = await fetchData(currentPage);
     setUsers(updatedUsers || []);
@@ -202,7 +208,8 @@ const CryptoItems: React.FC = () => {
         "SelectedUser",
         element.textContent ? element.textContent : ""
       );
-      window.location.href = "/user";
+      // console.log(element.textContent);
+      window.location.href = `/user/${element.textContent}`;
     });
   });
 
@@ -211,7 +218,7 @@ const CryptoItems: React.FC = () => {
     commentElement.addEventListener("click", () => {
       const itemId = commentElement.id.replace("*", "");
       localStorage.setItem("selectedItem", itemId);
-      window.location.href = "/crypto-item";
+      window.location.href = `/crypto-item/${itemId}`;
     });
   });
 
@@ -271,11 +278,7 @@ const CryptoItems: React.FC = () => {
                     }}
                   >
                     <span className="score">{user.points} points</span> | by{" "}
-                    <a
-                      className="cnUser"
-                      style={{ cursor: "pointer" }}
-                      href="/user"
-                    >
+                    <a className="cnUser" style={{ cursor: "pointer" }}>
                       {user.author}
                     </a>{" "}
                     <span className="age" title={user.createdAt}>

@@ -1,15 +1,16 @@
+import { usePrivy } from "@privy-io/react-auth";
 import React, { useEffect, useState } from "react";
 
 // Helper functions for fetching data
 const API_URL =
-  "https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/ask/pages";
+  "https://toptop-api-facbf95cbd23.herokuapp.com/items/ask/pages/cat";
 
 const fetchData = async (pageNum: number) => {
   try {
     const response = await fetch(API_URL, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ pageNumber: pageNum || 0 }),
+      body: JSON.stringify({ pageNumber: pageNum || 0, cat: "Crypto" }),
     });
 
     if (!response.ok) throw new Error(`Error: ${response.status}`);
@@ -21,7 +22,7 @@ const fetchData = async (pageNum: number) => {
 };
 
 const deleteItem = async (id: string) => {
-  const UPVOTE_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/${id}`;
+  const UPVOTE_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/items/${id}`;
   try {
     const response = await fetch(UPVOTE_URL, {
       method: "DELETE",
@@ -36,7 +37,7 @@ const deleteItem = async (id: string) => {
 
 const UpVote = async (id: string) => {
   const username = localStorage.getItem("username");
-  const UPVOTE_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/upVote/${id}`;
+  const UPVOTE_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/items/upVote/${id}`;
 
   try {
     const response = await fetch(UPVOTE_URL, {
@@ -53,7 +54,7 @@ const UpVote = async (id: string) => {
 
 const DownVote = async (id: string) => {
   const username = localStorage.getItem("username");
-  const UPVOTE_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/items/downVote/${id}`;
+  const UPVOTE_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/items/downVote/${id}`;
 
   try {
     const response = await fetch(UPVOTE_URL, {
@@ -108,7 +109,7 @@ async function fetchCurrentUser1(): Promise<UserProtectedData | void> {
     return;
   }
 
-  const USER_URL = `https://crypto-api-3-6bf97d4979d1.herokuapp.com/users/findProtected/${username}`;
+  const USER_URL = `https://toptop-api-facbf95cbd23.herokuapp.com/users/findProtected/${username}`;
 
   try {
     const response = await fetch(USER_URL, {
@@ -164,6 +165,7 @@ const CryptoAskItems: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [users, setUsers] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(0);
+  const { login, authenticated } = usePrivy();
 
   useEffect(() => {
     const loadData = async () => {
@@ -178,10 +180,14 @@ const CryptoAskItems: React.FC = () => {
   }, [users]);
 
   const handleVote = async (id: string, isUpvote: boolean) => {
-    if (isUpvote) {
-      await UpVote(id);
+    if (!authenticated) {
+      login();
     } else {
-      await DownVote(id);
+      if (isUpvote) {
+        await UpVote(id);
+      } else {
+        await DownVote(id);
+      }
     }
     // Update users data after vote
     const updatedUsers = await fetchData(currentPage);
@@ -201,7 +207,7 @@ const CryptoAskItems: React.FC = () => {
         "SelectedUser",
         element.textContent ? element.textContent : ""
       );
-      window.location.href = "/user";
+      window.location.href = `/user/${element.textContent}`;
     });
   });
 
@@ -210,7 +216,7 @@ const CryptoAskItems: React.FC = () => {
     commentElement.addEventListener("click", () => {
       const itemId = commentElement.id.replace("*", "");
       localStorage.setItem("selectedItem", itemId);
-      window.location.href = "/crypto-item";
+      window.location.href = `/crypto-item/${itemId}`;
     });
   });
 
@@ -269,7 +275,7 @@ const CryptoAskItems: React.FC = () => {
                     <a
                       className="cnUser"
                       style={{ cursor: "pointer" }}
-                      href="/user"
+     
                     >
                       {user.author}
                     </a>{" "}

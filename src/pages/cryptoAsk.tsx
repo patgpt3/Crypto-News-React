@@ -53,7 +53,7 @@ function CryptoAsk() {
                             show
                           </a>{" "}
                           |{" "}
-                          <a style={{ color: "white" }} href="/crypto-jobs">
+                          <a style={{ color: "white" }} href="/crypto/jobs">
                             jobs
                           </a>{" "}
                           |{" "}

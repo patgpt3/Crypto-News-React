@@ -1,35 +1,55 @@
 import { PrivyProvider } from "@privy-io/react-auth";
 import { toSolanaWalletConnectors } from "@privy-io/react-auth/solana";
+// import { useCallback } from "react";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const solanaConnectors = toSolanaWalletConnectors({
-    // By default, shouldAutoConnect is enabled
     shouldAutoConnect: false,
+    // Add explicit Phantom connector configuration
   });
 
-  console.log("Solana Connectors:", solanaConnectors);
+  // const handleError = useCallback((error: Error) => {
+  //   console.error("Privy Authentication Error:", error);
+  //   // Add any custom error handling here
+  // }, []);
+
+  const solanaChain = {
+    id: 0, // Dummy value
+    name: "Solana",
+    nativeCurrency: {
+      name: "SOL",
+      symbol: "SOL",
+      decimals: 9,
+    },
+    rpcUrls: {
+      default: { http: ["https://api.mainnet-beta.solana.com"] },
+      public: { http: ["https://api.mainnet-beta.solana.com"] },
+    },
+  };
 
   return (
     <PrivyProvider
       appId="cm4hbsgjh005b112nhfjml9kw"
+      // onError={handleError}
       config={{
-        // Customize Privy's appearance in your app
-
         appearance: {
           theme: "light",
           accentColor: "#676FFF",
-          logo: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/up-arrow.png",
-          walletChainType: "ethereum-only",
+          logo: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/up-arrow.png", // Use an accessible logo
+          walletChainType: "solana-only",
+          showWalletLoginFirst: true, // Improves wallet connection UX
         },
+        defaultChain: solanaChain,
+        supportedChains: [solanaChain],
         externalWallets: {
           solana: {
             connectors: solanaConnectors,
           },
         },
-        // Create embedded wallets for users who don't have a wallet
         embeddedWallets: {
           createOnLogin: "users-without-wallets",
         },
+        loginMethods: ["wallet"],
       }}
     >
       {children}

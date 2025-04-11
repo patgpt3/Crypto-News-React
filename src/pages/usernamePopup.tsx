@@ -23,7 +23,7 @@ async function fetchData(): Promise<void> {
   const privyInput = localStorage.getItem("privyIdInput") || "";
 
   try {
-    const response = await fetch('https://crypto-api-3-6bf97d4979d1.herokuapp.com/users', {
+    const response = await fetch('https://toptop-api-facbf95cbd23.herokuapp.com/users', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -157,19 +157,33 @@ const Popup: React.FC = () => {
               className="popup-input"
             />
             <div className="popup-actions">
-              <button
+              <div
+                style={{
+                  fontFamily: "Verdana, Geneva, sans-serif",
+                  color: "#828282",
+                  fontSize: "14px",
+                  cursor: "pointer",
+                  textDecoration: "underline"
+                }}
                 onClick={handleCancel}
                 // className="submit-btn"
               >
                 cancel
-              </button>
-              <button
+              </div>
+              <div
+                style={{
+                  fontFamily: "Verdana, Geneva, sans-serif",
+                  color: "#828282",
+                  fontSize: "14px",
+                  cursor: "pointer",
+                  textDecoration: "underline"
+                }}
                 onClick={handleSubmit}
-                disabled={usernameInput === ""}
+                // disabled={usernameInput === ""}
                 // className="submit-btn"
               >
                 Submit
-              </button>
+              </div>
             </div>
           </div>
         </div>
