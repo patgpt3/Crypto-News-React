@@ -216,9 +216,12 @@ const RenderReplies: React.FC<RenderRepliesProps> = ({
             </div>
           </tr>
           {reply.replies && (
+            <>
+            <br />
             <RenderReplies replies={reply.replies} depth={depth + 1} />
+          </>
           )}
-          <br />
+
         </React.Fragment>
       ))}
     </>
