@@ -49,7 +49,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         embeddedWallets: {
           createOnLogin: "users-without-wallets",
         },
-        loginMethods: ["wallet", 'email'],
+        loginMethods: ["wallet", 'email', 'farcaster'],
       }}
     >
       {children}
