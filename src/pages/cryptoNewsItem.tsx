@@ -16,15 +16,13 @@ declare global {
 
 const API_URL = "https://toptop-api-facbf95cbd23.herokuapp.com/comments";
 
-const fetchData = async ( body: string, id:string) => {
+const fetchData = async (body: string, id: string) => {
   // const title = document.getElementById("title")?.value;
   // const url = document.getElementById("url").value;
   // const body = document.getElementById("body").value;
   const username = localStorage.getItem("username");
 
-
-
-  console.log("body:", body);
+  // console.log("body:", body);
 
   try {
     const response = await fetch(API_URL, {
@@ -33,13 +31,13 @@ const fetchData = async ( body: string, id:string) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-
         points: 0,
         comment: body || "",
         author: username,
         isFlagged: 0,
         category: "Crypto",
-        item: id
+        item: id,
+        replies: [],
       }),
     });
 
@@ -58,10 +56,9 @@ const fetchData = async ( body: string, id:string) => {
 const CryptoNewsItem = () => {
   const { id } = useParams<{ id: string }>();
 
-
   const { login } = usePrivy();
-   const [bodyInput, setBodyInput] = useState("");
-   const [idInput, setIdInput] = useState("");
+  const [bodyInput, setBodyInput] = useState("");
+  const [idInput, setIdInput] = useState("");
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     // Dynamically load the script
@@ -80,9 +77,8 @@ const CryptoNewsItem = () => {
     const username = localStorage.getItem("username");
     if (!username || username === "null") {
       login();
-    }else {
-      
-      await fetchData( bodyInput,idInput);
+    } else {
+      await fetchData(bodyInput, idInput);
       window.location.href = `/crypto-item/${id}`;
     }
   };
@@ -269,6 +265,6 @@ const CryptoNewsItem = () => {
       </center>
     </div>
   );
-}
+};
 
 export default CryptoNewsItem;
