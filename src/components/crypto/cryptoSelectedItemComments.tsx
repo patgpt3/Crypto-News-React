@@ -420,6 +420,7 @@ const SelectedItemComments: React.FC = () => {
                       <u>
                         <a
                           className="reply"
+                          href={`/crypto-comments-selected/${comment?._id}`}
                           id={`${comment?._id}&`}
                           rel="nofollow"
                           style={{ cursor: "pointer" }}
