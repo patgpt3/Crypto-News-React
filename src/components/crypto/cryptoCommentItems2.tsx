@@ -130,7 +130,7 @@ const CommentsPage: React.FC = () => {
     commentElement.addEventListener("click", () => {
       const itemId = commentElement.id.replace("%", "");
       localStorage.setItem("selectedItem", itemId);
-      window.location.href = `/crypto-item/${itemId}`;
+      window.location.href = `/crypto/item/${itemId}`;
     });
   });
   const handleDeleteComment = async (id: string) => {
@@ -279,7 +279,7 @@ const CommentsPage: React.FC = () => {
     element.addEventListener("click", () => {
       const commentId = element.id.replace("&", "");
       localStorage.setItem("selectedCommentIn", commentId);
-      window.location.href = `/crypto-comments-selected/${commentId}`;
+      window.location.href = `/crypto/comments/selected/${commentId}`;
     });
   });
 

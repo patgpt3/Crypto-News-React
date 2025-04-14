@@ -72,6 +72,7 @@ import GamingAsk from "./pages/gamingAsk";
 import GamingShow from "./pages/gamingShow";
 import GamingJobs from "./pages/gamingJobs";
 import CryptoNewsItem from "./pages/cryptoNewsItem";
+import AINewsItem from "./pages/aiNewsItem";
 
 function App() {
   // const { login, logout, authenticated } = usePrivy();
@@ -96,12 +97,12 @@ function App() {
       <Route path="/crypto-profile-jobs" element={<CryptoProfileJobs />} />
 
       <Route
-        path="/crypto-comments-selected/:id"
+        path="/crypto/comments/selected/:id"
         element={<CryptoCommentSelected />}
       />
-      <Route path="/crypto-comments-reply/:id" element={<CryptoReplySelected />} />
+      <Route path="/crypto/comments/reply/:id" element={<CryptoReplySelected />} />
 
-      <Route path="/crypto-item/:id" element={<CryptoNewsItem />} />
+      <Route path="/crypto/item/:id" element={<CryptoNewsItem />} />
 
       <Route path="/crypto/jobs-selected" element={<CryptoJobSelected />} />
 
@@ -122,7 +123,7 @@ function App() {
       <Route path="/ai/comments/selected" element={<CommentsCrypto />} />
       <Route path="/ai/comments/reply" element={<CommentsCrypto />} />
 
-      <Route path="/ai/item" element={<CommentsCrypto />} />
+      <Route path="/ai/item/:id" element={<AINewsItem />} />
 
       <Route path="/ai/jobs/selected" element={<CommentsCrypto />} />
 

@@ -218,7 +218,7 @@ const CryptoItems: React.FC = () => {
     commentElement.addEventListener("click", () => {
       const itemId = commentElement.id.replace("*", "");
       localStorage.setItem("selectedItem", itemId);
-      window.location.href = `/crypto-item/${itemId}`;
+      window.location.href = `/crypto/item/${itemId}`;
     });
   });
 

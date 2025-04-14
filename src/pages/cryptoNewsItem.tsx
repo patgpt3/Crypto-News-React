@@ -79,7 +79,7 @@ const CryptoNewsItem = () => {
       login();
     } else {
       await fetchData(bodyInput, idInput);
-      window.location.href = `/crypto-item/${id}`;
+      window.location.href = `/crypto/item/${id}`;
     }
   };
 

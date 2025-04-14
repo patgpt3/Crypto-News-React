@@ -203,7 +203,7 @@ const RenderReplies: React.FC<RenderRepliesProps> = ({
                         //   className="reply"
                           id={`${reply._id}&`}
                           rel="nofollow"
-                          href={`/crypto-comments-reply/${reply._id}`}
+                          href={`/crypto/comments/reply/${reply._id}`}
                           style={{ cursor: "pointer" }}
                         >
                           reply

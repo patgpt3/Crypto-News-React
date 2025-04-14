@@ -542,7 +542,7 @@ async function postReply() {
           localStorage.getItem("selectedItem")
         );
         if (localStorage.getItem("selectedItem")) {
-          window.location.href = "/crypto-item";
+          window.location.href = "/crypto/item";
         } else {
           window.location.href = "/crypto-comments";
         }

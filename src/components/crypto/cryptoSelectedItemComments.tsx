@@ -8,6 +8,7 @@ interface ItemSingle {
   author: string;
   comment: string;
   createdAt: string;
+  category: string;
   points: number;
   replies: string[];
   item: string;
@@ -127,14 +128,7 @@ const SelectedItemComments: React.FC = () => {
     if (interval > 1) return `${Math.floor(interval)} minutes ago`;
     return `${Math.floor(seconds)} seconds ago`;
   };
-  const commentElements = document.querySelectorAll(".cnContext");
-  commentElements.forEach((commentElement) => {
-    commentElement.addEventListener("click", () => {
-      const itemId = commentElement.id.replace("%", "");
-      localStorage.setItem("selectedItem", itemId);
-      window.location.href = `/crypto-item/${itemId}`;
-    });
-  });
+
   const handleDeleteComment = async (id: string) => {
     try {
       const response = await fetch(
@@ -281,7 +275,7 @@ const SelectedItemComments: React.FC = () => {
     element.addEventListener("click", () => {
       const commentId = element.id.replace("&", "");
       localStorage.setItem("selectedCommentIn", commentId);
-      window.location.href = `/crypto-comments-selected/${commentId}`;
+      window.location.href = `/crypto/comments/selected/${commentId}`;
     });
   });
 
@@ -372,6 +366,7 @@ const SelectedItemComments: React.FC = () => {
                         className="cnContext"
                         style={{ cursor: "pointer" }}
                         id={`${comment?.item}%`}
+                        href={`/${comment?.category}/item/${comment?.item}`}
                       >
                         | context
                       </a>{" "}
@@ -420,7 +415,7 @@ const SelectedItemComments: React.FC = () => {
                       <u>
                         <a
                           className="reply"
-                          href={`/crypto-comments-selected/${comment?._id}`}
+                          href={`/${comment.category}/comments/selected/${comment?._id}`}
                           id={`${comment?._id}&`}
                           rel="nofollow"
                           style={{ cursor: "pointer" }}
