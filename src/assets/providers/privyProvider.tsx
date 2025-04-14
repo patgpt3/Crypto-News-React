@@ -36,7 +36,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           theme: "light",
           accentColor: "#676FFF",
           logo: "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/up-arrow.png", // Use an accessible logo
-          walletChainType: "solana-only",
+          walletChainType: "ethereum-and-solana",
           showWalletLoginFirst: true, // Improves wallet connection UX
         },
         defaultChain: solanaChain,
