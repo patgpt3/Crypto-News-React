@@ -99,7 +99,7 @@ function App() {
         path="/crypto-comments-selected/:id"
         element={<CryptoCommentSelected />}
       />
-      <Route path="/crypto-comments-reply" element={<CryptoReplySelected />} />
+      <Route path="/crypto-comments-reply/:id" element={<CryptoReplySelected />} />
 
       <Route path="/crypto-item/:id" element={<CryptoNewsItem />} />
 

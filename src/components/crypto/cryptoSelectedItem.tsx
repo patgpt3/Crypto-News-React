@@ -223,7 +223,7 @@ const CryptoSelectedItem: React.FC = () => {
         "SelectedUser",
         element.textContent ? element.textContent : ""
       );
-      window.location.href = "/user";
+      window.location.href = `/user/${element.textContent}`;
     });
   });
 

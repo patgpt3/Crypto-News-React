@@ -1,10 +1,56 @@
 // import "./App.css";
 // import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
+import CryptoSelectedReply1 from "../components/crypto/cryptoSelectedReply1";
+import { usePrivy } from "@privy-io/react-auth";
+import { useParams } from "react-router-dom";
+const API_URL = "https://toptop-api-facbf95cbd23.herokuapp.com/replies";
 
+const fetchData = async (body: string, id: string) => {
+  // const title = document.getElementById("title")?.value;
+  // const url = document.getElementById("url").value;
+  // const body = document.getElementById("body").value;
+  const username = localStorage.getItem("username");
+
+  // console.log("body:", body);
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        points: 0,
+        reply: body || "",
+        author: username,
+        isFlagged: 0,
+        commentId: id,
+        parentReply: id,
+        replies: [],
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("from within:", data);
+    return data;
+    // Use this data as needed in your frontend
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+};
 function CryptoReplySelected() {
+  const { login } = usePrivy();
+  const [bodyInput, setBodyInput] = useState("");
+  const [idInput, setIdInput] = useState("");
+  const { id } = useParams<{ id: string }>();
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     // Dynamically load the script
@@ -12,12 +58,23 @@ function CryptoReplySelected() {
     script.src = "/public/cryptoScripts/indexReplyIndividual.js"; // Ensure this path is correct
     script.async = true;
     document.body.appendChild(script);
+    setIdInput(`${id}`);
 
     return () => {
       // Cleanup the script when the component is unmounted
       document.body.removeChild(script);
     };
   }, []);
+
+  const handleSubmitReply = async () => {
+    const username = localStorage.getItem("username");
+    if (!username || username === "null") {
+      login();
+    } else {
+      await fetchData(bodyInput, idInput);
+      window.location.href = `/crypto-comments`;
+    }
+  };
 
   return (
     <div id="root">
@@ -42,7 +99,7 @@ function CryptoReplySelected() {
                   <tbody>
                     <tr>
                       <td style={{ lineHeight: "12pt", height: "18px" }}>
-                      <span className="pagetop" style={{ color: "white" }}>
+                        <span className="pagetop" style={{ color: "white" }}>
                           <b className="hnname" style={{ color: "white" }}>
                             <a
                               style={{ color: "white", marginLeft: "3px" }}
@@ -101,20 +158,35 @@ function CryptoReplySelected() {
             <tr id="pagespace" title="" style={{ height: "10px" }}></tr>
             <tr>
               <td>
-                <table border={0} cellPadding={0} cellSpacing={0} style={{ marginLeft: "10px" }}>
+                <table
+                  border={0}
+                  cellPadding={0}
+                  cellSpacing={0}
+                  style={{ marginLeft: "10px" }}
+                >
                   <tbody>
                     <tr>
                       <td>
                         <table className="fatitem" border={0}>
                           <tbody>
-                            <div id="container111"></div>
+                            <CryptoSelectedReply1 />
+                            <br />
                             <tr>
-                              
                               <td>
-                                <textarea id="reply" name="text" rows={8} cols={80} wrap="virtual"></textarea>
+                                <textarea
+                                  id="reply"
+                                  name="text"
+                                  rows={8}
+                                  cols={80}
+                                  wrap="virtual"
+                                  value={bodyInput}
+                                  onChange={(e) => setBodyInput(e.target.value)}
+                                ></textarea>
                                 <br />
                                 <br />
-                                <button >Reply</button>
+                                <button onClick={handleSubmitReply}>
+                                  Reply
+                                </button>
                               </td>
                             </tr>
                           </tbody>
@@ -123,7 +195,10 @@ function CryptoReplySelected() {
                         <br />
                         <table border={0} className="comment-tree">
                           <tbody>
-                            <div id="commentsIndex" style={{ marginLeft: "3vw" }}></div>
+                            <div
+                              id="commentsIndex"
+                              style={{ marginLeft: "3vw" }}
+                            ></div>
                           </tbody>
                         </table>
                         <br />
@@ -136,7 +211,12 @@ function CryptoReplySelected() {
             </tr>
             <tr>
               <td>
-                <img src="./Hacker News_files/s.gif" height={10} width={0} alt="" />
+                <img
+                  src="./Hacker News_files/s.gif"
+                  height={10}
+                  width={0}
+                  alt=""
+                />
                 <table width="100%" cellSpacing={0} cellPadding={1}>
                   <tbody>
                     <tr>

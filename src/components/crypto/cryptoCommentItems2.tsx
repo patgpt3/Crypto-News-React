@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import RenderReplies from "../film/renderReplies";
 import { usePrivy } from "@privy-io/react-auth";
+import RenderReplies from "./renderReplies";
 
 interface Comment {
   _id: string;
@@ -279,7 +279,7 @@ const CommentsPage: React.FC = () => {
     element.addEventListener("click", () => {
       const commentId = element.id.replace("&", "");
       localStorage.setItem("selectedCommentIn", commentId);
-      window.location.href = "/crypto-comments-selected";
+      window.location.href = `/crypto-comments-selected/${commentId}`;
     });
   });
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import RenderReplies from "../film/renderReplies";
 import { usePrivy } from "@privy-io/react-auth";
 import { usePopup } from "../../assets/providers/popupContext";
+import RenderReplies from "./renderReplies";
 
 interface ItemSingle {
   _id: string;
@@ -132,7 +132,7 @@ const SelectedItemComments: React.FC = () => {
     commentElement.addEventListener("click", () => {
       const itemId = commentElement.id.replace("%", "");
       localStorage.setItem("selectedItem", itemId);
-      window.location.href = "/crypto-item";
+      window.location.href = `/crypto-item/${itemId}`;
     });
   });
   const handleDeleteComment = async (id: string) => {
@@ -176,7 +176,7 @@ const SelectedItemComments: React.FC = () => {
         "SelectedUser",
         element.textContent ? element.textContent : ""
       );
-      window.location.href = "/user";
+      window.location.href = `/user/${element.textContent}`;
     });
   });
 

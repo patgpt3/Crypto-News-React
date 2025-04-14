@@ -1,9 +1,11 @@
 // import "./App.css";
 // import { usePrivy } from "@privy-io/react-auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../../public/news.css"; // Adjust the path to your CSS file
 import HeaderMain from "./header";
 import { usePrivy } from "@privy-io/react-auth";
+import CryptoSelectedComment from "../components/crypto/cryptoSelectedComment";
+import { useParams } from "react-router-dom";
 // import { useParams } from "react-router-dom";
 
 // Extend the global Window interface
@@ -12,33 +14,72 @@ declare global {
     submitReply: () => void;
   }
 }
+const API_URL = "https://toptop-api-facbf95cbd23.herokuapp.com/replies";
 
+const fetchData = async (body: string, id: string) => {
+  // const title = document.getElementById("title")?.value;
+  // const url = document.getElementById("url").value;
+  // const body = document.getElementById("body").value;
+  const username = localStorage.getItem("username");
+
+  // console.log("body:", body);
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        points: 0,
+        reply: body || "",
+        author: username,
+        isFlagged: 0,
+        commentId: id,
+        replies: [],
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("from within:", data);
+    return data;
+    // Use this data as needed in your frontend
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+};
 function CryptoCommentSelected() {
   const { login } = usePrivy();
+    const [bodyInput, setBodyInput] = useState("");
+    const [idInput, setIdInput] = useState("");
   // const { id } = useParams<{ id: string }>();
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { id } = useParams<{ id: string }>();
   useEffect(() => {
     // Dynamically load the script
     const script = document.createElement("script");
     script.src = "/public/cryptoScripts/indexCommentIndividual.js"; // Ensure this path is correct
     script.async = true;
     document.body.appendChild(script);
-
+    setIdInput(`${id}`);
     return () => {
       // Cleanup the script when the component is unmounted
       document.body.removeChild(script);
     };
   }, []);
 
-  const handleSubmitReply = () => {
+  const handleSubmitReply = async () => {
     const username = localStorage.getItem("username");
     if (!username || username === "null") {
       login();
     }
-    if (window.submitReply) {
-      window.submitReply(); // Call the global function
-    } else {
-      console.error("submitItem is not defined.");
+   else {
+      await fetchData(bodyInput, idInput);
+      window.location.href = `/crypto-comments`;
     }
   };
 
@@ -135,7 +176,8 @@ function CryptoCommentSelected() {
                       <td>
                         <table className="fatitem" border={0}>
                           <tbody>
-                            <div id="container111"></div>
+                          <CryptoSelectedComment />
+                          <br />
                             <tr>
                               <td>
                                 <textarea
@@ -144,6 +186,8 @@ function CryptoCommentSelected() {
                                   rows={8}
                                   cols={80}
                                   wrap="virtual"
+                                  value={bodyInput}
+                                  onChange={(e) => setBodyInput(e.target.value)}
                                 ></textarea>
                                 <br />
                                 <br />
