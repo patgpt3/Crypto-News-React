@@ -1,4 +1,3 @@
-
 const TopTopNetwork = () => {
   return (
     <div
@@ -32,6 +31,7 @@ const TopTopNetwork = () => {
               border: "1px white solid",
               display: "block",
               width: "30vw",
+              minWidth: "350px",
               maxWidth: "1000px",
               margin: "auto",
             }}
