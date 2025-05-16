@@ -110,7 +110,7 @@ function HeaderMain() {
         </a>
       ) : (
         <a style={{ color: "white", cursor: "pointer" }} onClick={login}>
-          login
+          Connect
         </a>
       )}
     </>
