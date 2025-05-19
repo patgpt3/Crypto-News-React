@@ -1,7 +1,7 @@
 import "./App.css";
 // import { usePrivy } from "@privy-io/react-auth";
 import "../public/news.css"; // Adjust the path to your CSS file
-// import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 // import MainCrypto from "./pages/MainCrypto";
 // import CommentsCrypto from "./pages/CommentsCrypto";
 // import CryptoNew from "./pages/cryptoNew";
