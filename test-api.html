@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Connection Test</h1>
+    <button onclick="testAPI()">Test API Connection</button>
+    <div id="result"></div>
+
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                // Test the API endpoint
+                const response = await fetch('https://toptop-app.herokuapp.com/items');
+                const data = await response.json();
+                resultDiv.innerHTML = `<h3>✅ API is working!</h3><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<h3>❌ API Error:</h3><p>${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html> 
