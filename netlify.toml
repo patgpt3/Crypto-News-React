@@ -1,6 +1,6 @@
 [build]
 publish = "dist"
-command = "npm run build"
+command = "vite build"
 
 [build.environment]
   VITE_API_URL = "https://toptop-app.herokuapp.com"
