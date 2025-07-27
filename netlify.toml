@@ -1,0 +1,12 @@
+[build]
+publish = "dist"
+command = "npm run build"
+
+[build.environment]
+  VITE_API_URL = "https://toptop-app.herokuapp.com"
+  VITE_PRIVY_APP_ID = "cm4g4hzw102g3hlf5jgx0rxf9"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 
