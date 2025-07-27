@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .debug-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Debug Test Page</h1>
+    
+    <div class="debug-box">
+        <h2>Basic HTML Test</h2>
+        <p class="success">✅ If you can see this, HTML is loading correctly!</p>
+        <p>Current time: <span id="time"></span></p>
+    </div>
+
+    <div class="debug-box">
+        <h2>JavaScript Test</h2>
+        <p id="js-test">Testing JavaScript...</p>
+    </div>
+
+    <div class="debug-box">
+        <h2>Environment Variables Test</h2>
+        <p>This page doesn't have access to Vite environment variables, but you can check the React app for those.</p>
+    </div>
+
+    <script>
+        // Update time
+        document.getElementById('time').textContent = new Date().toLocaleString();
+        
+        // Test JavaScript
+        document.getElementById('js-test').innerHTML = '<span class="success">✅ JavaScript is working!</span>';
+        
+        console.log('Debug page loaded successfully');
+    </script>
+</body>
+</html> 
